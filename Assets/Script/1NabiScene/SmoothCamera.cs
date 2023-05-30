@@ -8,10 +8,20 @@ public class SmoothCamera : MonoBehaviour
     public float CameraSpeed;
     public bool isActivated;
 
+    private Vector3 camera_init_pos;
+    private Quaternion camera_init_rotation;
+
     public GameObject Dialog;
 
     private float t = 0f;
-    
+
+    private void Awake()
+    {
+        camera_init_pos = gameObject.transform.position;
+        camera_init_rotation = gameObject.transform.rotation;
+        Camera1 = gameObject.transform;
+    }
+
     void Start()
     {
         isActivated = false;
@@ -20,7 +30,6 @@ public class SmoothCamera : MonoBehaviour
     void Update()
     {
 
-       
 
     }
 
@@ -33,5 +42,12 @@ public class SmoothCamera : MonoBehaviour
         myCamera.orthographicSize = Camera2.GetComponent<Camera>().orthographicSize;
         isActivated = false; // 보간 계산 중지
         Dialog.SetActive(false);
+    }
+
+    public void MoveMainScene()
+    {
+        myCamera.transform.position = camera_init_pos;
+        myCamera.transform.rotation = camera_init_rotation;
+
     }
 }

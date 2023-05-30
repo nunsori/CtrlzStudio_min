@@ -4,14 +4,23 @@ using UnityEngine;
 
 public class Option : MonoBehaviour
 {
-    public AnimationClip animation1;
-    public AnimationClip animation2;
+    [SerializeField]
+    private string[] animation_clip_name;
+
+    //public AnimationClip animation1;
+    //public AnimationClip animation2;
     private Animation animationComponent;
+
+    public Animator animator;
+
+
     private int clickCount = 0;
 
     private void Start()
     {
-        animationComponent = GetComponent<Animation>();
+        //animationComponent = GetComponent<Animation>();
+        //animationComponent.Play(animation_clip_name[0]);
+        change_animation_state(animator, animation_clip_name[0]);
     }
 
     public void OnButtonClick()
@@ -20,11 +29,11 @@ public class Option : MonoBehaviour
 
         if (clickCount % 2 == 1)
         {
-            PlayAnimation(animation1);
+            change_animation_state(animator, animation_clip_name[1]);
         }
         else
         {
-            PlayAnimation(animation2);
+            change_animation_state(animator, animation_clip_name[2]);
         }
     }
 
@@ -32,5 +41,16 @@ public class Option : MonoBehaviour
     {
         animationComponent.clip = animationClip;
         animationComponent.Play();
+    }
+
+
+    public void change_animation_state(Animator animator, string state_name)
+    {
+        // stop from interrupting by same animation
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName(state_name)) return;
+
+        //animation play
+        animator.Play(state_name);
+
     }
 }

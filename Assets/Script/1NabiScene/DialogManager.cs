@@ -27,14 +27,20 @@ public class DialogManager : MonoBehaviour
     public bool isRunning = true;
 
 
-    private int currentDialogIndex = 0; // 현재 출력 중인 대화 인덱스
+    public int currentDialogIndex = 0; // 현재 출력 중인 대화 인덱스
     private bool isTyping = false; // 대사 출력 중인지 여부
+
+    private UI_Controller uI_Controller = null;
 
     void Start()
     {
-        LoadDialogsFromCSV();
-        DisplayDialog();
+        currentDialogIndex = 0;
         Makingbutton.SetActive(false);
+        LoadDialogsFromCSV();
+
+        uI_Controller = gameObject.GetComponent<UI_Controller>();
+        //DisplayDialog();
+        
 
     
     }
@@ -51,11 +57,12 @@ public class DialogManager : MonoBehaviour
         }
     }
 
-    void DisplayDialog()
+    public void DisplayDialog()
     {
         if (currentDialogIndex >= dialogs.Count) // 대화가 끝났으면 함수를 종료, 버튼 활성화
         {
             Makingbutton.SetActive(true);
+            
             return;
         }
 
@@ -108,6 +115,8 @@ public class DialogManager : MonoBehaviour
         // 대화 출력 함수 호출
         DisplayDialog();
     }
+
+    
 
     void Update()
     {
