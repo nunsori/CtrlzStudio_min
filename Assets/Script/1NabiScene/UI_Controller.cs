@@ -17,6 +17,10 @@ public class UI_Controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        save_load_Data.Instance.load();
+
+        DialogManager.currentDialogIndex = save_load_Data.play_data.cur_progress;
+
         //초기 ui active 설정
         ui_objs[0].SetActive(true);
         ui_objs[1].SetActive(false);
@@ -37,7 +41,7 @@ public class UI_Controller : MonoBehaviour
         ui_objs[2].SetActive(false);
 
         //다이얼로그 활성화
-        dialogManager.currentDialogIndex = 0;
+        //dialogManager.currentDialogIndex = 0;
         dialogManager.DisplayDialog();
     }
 
