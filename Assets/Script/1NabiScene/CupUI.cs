@@ -5,15 +5,20 @@ using UnityEngine;
 
 public class CupUI : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject cupObject;
     void Start()
     {
-        
+        cupObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void clickbutton()
+    {
+        cupObject.SetActive(true);
     }
 }
