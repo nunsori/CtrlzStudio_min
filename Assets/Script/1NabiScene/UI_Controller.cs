@@ -60,7 +60,8 @@ public class UI_Controller : MonoBehaviour
         ui_objs[1].SetActive(true);
         ui_objs[2].SetActive(false);
 
-        dialogManager.NextDialog();
+        //dialogManager.NextDialog();
+        dialogManager.next_page_dialog();
     }
 
 

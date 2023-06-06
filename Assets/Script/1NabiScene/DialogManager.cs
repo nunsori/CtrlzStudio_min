@@ -8,7 +8,7 @@ using TMPro;
 public class DialogManager : MonoBehaviour
 {    [Header("CSV 파일 경로")]
     [Tooltip("CSV파일은 Asset/Dialog/파일이름.csv로 입력해주시고, \n 파일은 project>Asset>Dialog에 저장!")]
-    //Assets/Dialog/Nabi.csv
+    //Assets/Dialog/Nabi_1_1.csv
     public string[] filePath; // CSV 파일 경로
 
     // 대화 데이터를 저장할 리스트
@@ -58,22 +58,27 @@ public class DialogManager : MonoBehaviour
 
         for (int i = 1; i < lines.Length; i++) // 첫 번째 줄은 헤더이므로 무시하고 두 번째 줄부터 데이터를 읽음
         {
+            dialogs.Add(new List<Dialog>());
             string[] fields = lines[i].Split(','); // 쉼표로 구분된 값들을 배열로 읽어옴
             Dialog dialog = new Dialog(fields[0], fields[1].Replace("\\n", "\n")); // 캐릭터 이름과 대사를 Dialog 클래스에 저장
             dialogs[current_scene_page].Add(dialog); // 대화 데이터를 리스트에 추가
         }
 
-        current_scene_page++;
+        //current_scene_page++;
     }
 
     public void DisplayDialog()
     {
-        if (currentDialogIndex >= dialogs.Count) // 대화가 끝났으면 함수를 종료, 버튼 활성화
+        if (currentDialogIndex >= dialogs[current_scene_page].Count) // 대화가 끝났으면 함수를 종료, 버튼 활성화
         {
             Makingbutton.SetActive(true);
             
             return;
         }
+
+        dialogText.text = "";
+        Makingbutton.SetActive(false);
+
 
         Dialog dialog = dialogs[current_scene_page][currentDialogIndex]; // 출력할 대화 가져오기
         characterNameText.text = dialog.characterName; // 캐릭터 이름 출력
@@ -139,6 +144,16 @@ public class DialogManager : MonoBehaviour
         {
             NextDialog();
         }
+    }
+
+    public void next_page_dialog()
+    {
+        current_scene_page++;
+        currentDialogIndex = 0;
+
+        LoadDialogsFromCSV();
+
+        DisplayDialog();
     }
 }
 

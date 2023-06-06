@@ -3463,7 +3463,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5398f38b846b1ac4cada0478c463009b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  filePath: []
+  filePath:
+  - Assets/Dialog/Nabi_1_1.csv
+  - Assets/Dialog/Nabi_1_2.csv
+  - Assets/Dialog/Nabi_2_1.csv
+  - Assets/Dialog/Nabi_2_2.csv
+  - Assets/Dialog/Nabi_3_1.csv
+  - Assets/Dialog/Nabi_3_2.csv
   characterNameText: {fileID: 205885544}
   dialogText: {fileID: 503619}
   Makingbutton: {fileID: 1050132623}
