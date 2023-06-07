@@ -25,12 +25,12 @@ public class Click : MonoBehaviour
 
     }
 
-    //Start
+    //NewGame
     public void NewGameButton() 
     {
         NewGameImage.SetActive(true);
     }
-
+    //Load
     public void Load()
     {
         LoadImage.SetActive(true);
@@ -49,6 +49,28 @@ public class Click : MonoBehaviour
     public void Exit()
     {
         Application.Quit();
+    }
+
+
+
+    //부가기능
+    
+    //Load 뒤로가기
+    public void LoadBack()
+    {
+        LoadImage.SetActive(false);
+    }
+
+    //Option 뒤로가기
+    public void OptionBack()
+    {
+        OptionImage.SetActive(false);
+    }
+
+    //NewGamePopup 다음씬으로 전환
+    public void NewGamePopup()
+    {
+        SceneManager.LoadScene(2);
     }
 
 }
