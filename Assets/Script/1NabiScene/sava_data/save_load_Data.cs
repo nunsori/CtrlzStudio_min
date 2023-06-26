@@ -5,6 +5,7 @@ using System.IO;
 using System;
 
 
+
 public class data_
 {
 
@@ -27,7 +28,10 @@ public class data_
     //생성자 함수
     public data_()
     {
-
+        temp = 0;
+        cur_progress = 0;
+        progress_arr = new bool[5];
+        Debug.Log("created data_ @@@@");
     }
 
 
@@ -50,7 +54,7 @@ public class save_load_Data : MonoBehaviour
 
     private string data_string_temp;
 
-    public static data_ play_data;
+    public data_ play_data;
 
 
     private void Awake()
@@ -60,8 +64,7 @@ public class save_load_Data : MonoBehaviour
         data_file_name = data_file_name + ".json";
         data_path = Application.persistentDataPath + "/data/";
 
-        //플레이 데이터 설정
-        play_data = new data_();
+        
 
         //singleton
         if (Instance == null)
@@ -74,6 +77,9 @@ public class save_load_Data : MonoBehaviour
             Destroy(this.gameObject);
         }
 
+        //플레이 데이터 설정
+        play_data = new data_();
+        Debug.Log(play_data);
 
         load();
 
@@ -123,6 +129,8 @@ public class save_load_Data : MonoBehaviour
 
             data_string_temp = File.ReadAllText(data_path + data_file_name);
             play_data = JsonUtility.FromJson<data_>(data_string_temp);
+            Debug.Log(data_string_temp);
+            Debug.Log(play_data);
         }
     }
 

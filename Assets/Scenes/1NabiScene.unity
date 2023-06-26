@@ -3464,12 +3464,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   filePath:
-  - Assets/Dialog/Nabi_1_1.csv
-  - Assets/Dialog/Nabi_1_2.csv
-  - Assets/Dialog/Nabi_2_1.csv
-  - Assets/Dialog/Nabi_2_2.csv
-  - Assets/Dialog/Nabi_3_1.csv
-  - Assets/Dialog/Nabi_3_2.csv
+  - Assets/Dialog/2-1 Nabi.csv
+  - Assets/Dialog/2-3 Nabi.csv
+  - Assets/Dialog/3-1 Miho.csv
+  - Assets/Dialog/3-3 Miho.csv
+  - Assets/Dialog/4-1 Lee.csv
+  - Assets/Dialog/4-3 Lee.csv
   characterNameText: {fileID: 205885544}
   dialogText: {fileID: 503619}
   Makingbutton: {fileID: 1050132623}

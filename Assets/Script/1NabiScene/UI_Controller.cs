@@ -18,8 +18,11 @@ public class UI_Controller : MonoBehaviour
     void Start()
     {
         save_load_Data.Instance.load();
+        //Debug.Log(save_load_Data.play_data.cur_progress);
+        //Debug.Log(save_load_Data.Instance);
+        Debug.Log(save_load_Data.Instance.play_data);
+        DialogManager.currentDialogIndex = save_load_Data.Instance.play_data.cur_progress;
 
-        DialogManager.currentDialogIndex = save_load_Data.play_data.cur_progress;
 
         //초기 ui active 설정
         ui_objs[0].SetActive(true);
