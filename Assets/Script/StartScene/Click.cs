@@ -10,6 +10,9 @@ public class Click : MonoBehaviour
     public GameObject NewGameImage;
     public GameObject LoadImage;
     public GameObject OptionImage;
+
+    public Slider bgm_slider;
+    public Slider narr_slider;
    
 
     void Start()
@@ -17,6 +20,11 @@ public class Click : MonoBehaviour
         NewGameImage.SetActive(false);
         LoadImage.SetActive(false);
         OptionImage.SetActive(false);
+
+        bgm_slider.value = save_load_Data.Instance.play_data.BGM_Volume;
+        narr_slider.value = save_load_Data.Instance.play_data.Narr_Volume;
+        //save_load_Data.Instance.play_data.BGM_Volume = bgm_slider.value;
+        //save_load_Data.Instance.play_data.Narr_Volume = narr_slider.value;
     }
 
     // Update is called once per frame
@@ -65,6 +73,8 @@ public class Click : MonoBehaviour
     public void OptionBack()
     {
         OptionImage.SetActive(false);
+
+        save_load_Data.Instance.save();
     }
 
     //NewGamePopup 다음씬으로 전환
@@ -73,4 +83,28 @@ public class Click : MonoBehaviour
         SceneManager.LoadScene(2);
     }
 
+    public void change_slider(string slider_name)
+    {
+        switch (slider_name)
+        {
+            case ("BGM"):
+                //BGM volume 조절
+                save_load_Data.Instance.play_data.BGM_Volume = bgm_slider.value;
+
+                break;
+
+
+            case ("NARR"):
+                //narration volume 조절
+                save_load_Data.Instance.play_data.Narr_Volume = narr_slider.value;
+
+
+                break;
+
+
+            default:
+
+                break;
+        }
+    }
 }

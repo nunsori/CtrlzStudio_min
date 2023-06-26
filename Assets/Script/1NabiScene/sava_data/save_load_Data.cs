@@ -24,6 +24,11 @@ public class data_
     public bool[] progress_arr = { false, false, false, false, false };
 
 
+    //사운드 관련 변수
+    public float BGM_Volume;
+    public float Narr_Volume;
+
+
 
     //생성자 함수
     public data_()
@@ -31,6 +36,10 @@ public class data_
         temp = 0;
         cur_progress = 0;
         progress_arr = new bool[5];
+
+        //
+        BGM_Volume = 0.5f;
+        Narr_Volume = 0.5f;
         Debug.Log("created data_ @@@@");
     }
 
@@ -94,6 +103,8 @@ public class save_load_Data : MonoBehaviour
         //Debug.Log(data_string_temp);
         
         File.WriteAllText(data_path + data_file_name, data_string_temp);
+
+        Debug.Log("save complete");
     }
 
     //로드 함수
