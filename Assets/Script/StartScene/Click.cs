@@ -80,7 +80,10 @@ public class Click : MonoBehaviour
     //NewGamePopup 다음씬으로 전환
     public void NewGamePopup()
     {
-        SceneManager.LoadScene(2);
+        //SceneManager.LoadScene(2);
+
+        //로딩씬 불러오는 함수 인자로 씬이름
+        loading_scene_controller.Instance.load_new_scene("1NabiScene");
     }
 
     public void change_slider(string slider_name)
