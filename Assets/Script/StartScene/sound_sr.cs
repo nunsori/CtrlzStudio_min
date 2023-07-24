@@ -87,6 +87,7 @@ public class sound_sr : MonoBehaviour
             }
         }
 
+
         Debug.Log("not effect : " + name + "\n or all effects are playing");
     }
 }
