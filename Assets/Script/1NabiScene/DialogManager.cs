@@ -69,6 +69,7 @@ public class DialogManager : MonoBehaviour
 
     public void DisplayDialog()
     {
+        Debug.Log("dis@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
         if (currentDialogIndex >= dialogs[current_scene_page].Count) // 대화가 끝났으면 함수를 종료, 버튼 활성화
         {
             Makingbutton.SetActive(true);
@@ -85,7 +86,11 @@ public class DialogManager : MonoBehaviour
 
 
         // 대사 출력 함수 호출
-        StartCoroutine(TypeDialogText(dialog.text));
+        if(isTyping == false)
+        {
+            StartCoroutine(TypeDialogText(dialog.text));
+        }
+        
 
         // 캐릭터이름 칸이 비어있어도 출력되는 함수
         if (dialog.characterName != "")
@@ -137,12 +142,12 @@ public class DialogManager : MonoBehaviour
         //마우스클릭, space 버튼 누르면 다음 대화씬 이동
         if (isRunning && Input.GetMouseButtonDown(0))
         {
-            NextDialog();
+            //NextDialog();
         }
 
         if (isRunning && Input.GetKeyDown(KeyCode.Space))
         {
-            NextDialog();
+            //NextDialog();
         }
     }
 

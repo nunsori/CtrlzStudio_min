@@ -38,6 +38,7 @@ public class UI_Controller : MonoBehaviour
 
     public void start_btn_clicked()
     {
+        Debug.Log("start_clicked------------------------");
         //ui 활성화 변경
         ui_objs[0].SetActive(false);
         ui_objs[1].SetActive(true);

@@ -45,7 +45,7 @@ public class production_controller : MonoBehaviour
 
         //함수 부르는 예시
         //원하는 코루틴을 인자로 주어 호출하면 된다
-        call_production(fade_production(temp, false, 0.4f));
+        //call_production(fade_production(temp, false, 0.4f));
 
         //다른 스크립트에서 호출 예시
         //production_controller.call_production(production_controller.fade_production(gameObject, true, 0.4f);
