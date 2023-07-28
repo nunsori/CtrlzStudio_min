@@ -6,7 +6,7 @@ public class production_controller : MonoBehaviour
 {
     private static production_controller instance;
 
-    private static List<IEnumerator> Production_list; //= new List<IEnumerator>();
+    public static List<IEnumerator> Production_list; //= new List<IEnumerator>();
 
     public GameObject temp;
 
@@ -80,18 +80,20 @@ public class production_controller : MonoBehaviour
     //delay_ - fade in/out 에 걸리는 시간
     //active - fade in/out 시 오브젝트의 ative값도 조정해줄지 여부 결정, 기본 true로 되어있음
     //term - 그냥 두기 (몬가 렉 많이 걸린다 싶으면 0.1아니면 0.05 정도로 조정해보기)
-    public static IEnumerator fade_production(GameObject obj, bool fade_in, float delay_, bool acitve = true,float term = 0.01f)
+    public IEnumerator fade_production(float first_delay,GameObject obj, bool fade_in, float delay_, bool acitve = true,float term = 0.01f)
     {
         CanvasGroup canvasGroup = null;
         float progress = 0f;
         float time_check = 0f;
+
+        yield return new WaitForSeconds(first_delay);
 
         Debug.Log("start cor");
 
         
         canvasGroup = obj.GetComponent<CanvasGroup>();
 
-
+        
 
         if (fade_in)
         {
@@ -99,7 +101,7 @@ public class production_controller : MonoBehaviour
             canvasGroup.alpha = 0f;
             if (acitve)
             {
-                obj.SetActive(false);
+                obj.SetActive(true);
             }
         }
         else

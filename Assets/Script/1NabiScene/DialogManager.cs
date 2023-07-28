@@ -38,6 +38,11 @@ public class DialogManager : MonoBehaviour
 
     private UI_Controller uI_Controller = null;
 
+
+    private string state = "";
+
+    public delegate void temp_fun();
+
     void Start()
     {
         current_scene_page = 0;
@@ -60,7 +65,7 @@ public class DialogManager : MonoBehaviour
         {
             dialogs.Add(new List<Dialog>());
             string[] fields = lines[i].Split(','); // 쉼표로 구분된 값들을 배열로 읽어옴
-            Dialog dialog = new Dialog(fields[0], fields[1].Replace("\\n", "\n")); // 캐릭터 이름과 대사를 Dialog 클래스에 저장
+            Dialog dialog = new Dialog(fields[0], fields[1].Replace("\\n", "\n"), fields[2]); // 캐릭터 이름과 대사를 Dialog 클래스에 저장
             dialogs[current_scene_page].Add(dialog); // 대화 데이터를 리스트에 추가
         }
 
@@ -69,13 +74,15 @@ public class DialogManager : MonoBehaviour
 
     public void DisplayDialog()
     {
-        Debug.Log("dis@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-        if (currentDialogIndex >= dialogs[current_scene_page].Count) // 대화가 끝났으면 함수를 종료, 버튼 활성화
-        {
-            Makingbutton.SetActive(true);
+        //Debug.Log("dis@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        //if (currentDialogIndex >= dialogs[current_scene_page].Count) // 대화가 끝났으면 함수를 종료, 버튼 활성화
+        //{
+            //Makingbutton.SetActive(true);
             
-            return;
-        }
+            //return;
+        //}
+
+        
 
         dialogText.text = "";
         Makingbutton.SetActive(false);
@@ -90,7 +97,46 @@ public class DialogManager : MonoBehaviour
         {
             StartCoroutine(TypeDialogText(dialog.text));
         }
+
+        Debug.Log(dialog.production);
+
+        //연출관련 함수
+        switch (dialog.production) {
+            case "-2":
+                //making drink
+                state = dialog.production;
+
+                break;
+            case "-1":
+                //ending
+                state = dialog.production;
+
+                break;
+            case "0":
+                //default
+                state = dialog.production;
+
+
+
+                break;
+
+            case "1":
+                //other production
+                
+
+                break;
+
+
+            default:
+                //nonde
+
+                Debug.Log("none");
+
+                break;
         
+        }
+
+
 
         // 캐릭터이름 칸이 비어있어도 출력되는 함수
         if (dialog.characterName != "")
@@ -110,9 +156,32 @@ public class DialogManager : MonoBehaviour
         isTyping = true;
         dialogText.text = "";
 
+        string temp_str = "";
+
         foreach (char c in text)
         {
-            dialogText.text += c;
+            if(c == '<' && temp_str == "")
+            {
+                temp_str += c;
+            }else if(c == '>' && temp_str != "")
+            {
+                temp_str += c;
+                dialogText.text += temp_str;
+                Debug.Log(temp_str);
+                temp_str = "";
+            }
+            else if(temp_str != "")
+            {
+                //dialogText.text += temp_str;
+                temp_str += c;
+            }
+            else if(temp_str == "")
+            {
+                dialogText.text += c;
+            }
+
+            
+
             yield return new WaitForSeconds(typingSpeed);
         }
 
@@ -128,11 +197,35 @@ public class DialogManager : MonoBehaviour
             return;
         }
 
-        // 다음 대화로 이동
-        currentDialogIndex++;
+        if(state == "-2")
+        {
+            Debug.Log("making_btn");
+            Makingbutton.SetActive(true);
 
-        // 대화 출력 함수 호출
-        DisplayDialog();
+            return;
+        }
+        else if(state == "-1")
+        {
+            //다음연출
+            Debug.Log("next_stage@@@@@@@@@@@@@@@@");
+            //next_page_dialog();
+            uI_Controller.make_finish_clicked();
+
+            return;
+        }
+        else if(state == "0")
+        {
+
+            Debug.Log("default");
+            // 다음 대화로 이동
+            currentDialogIndex++;
+
+            // 대화 출력 함수 호출
+            DisplayDialog();
+        }
+
+
+        
     }
 
     
@@ -166,11 +259,13 @@ public class Dialog
 {
     public string characterName; // 캐릭터 이름
     public string text; // 대사
+    public string production; // 연출 목록
 
     //텍스트 표시 UI
-    public Dialog(string characterName, string text)
+    public Dialog(string characterName, string text, string production)
     {
         this.characterName = characterName;
         this.text = text;
+        this.production = production;
     }
 }
