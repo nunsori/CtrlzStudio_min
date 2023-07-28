@@ -65,7 +65,7 @@ public class DialogManager : MonoBehaviour
         {
             dialogs.Add(new List<Dialog>());
             string[] fields = lines[i].Split(','); // 쉼표로 구분된 값들을 배열로 읽어옴
-            Dialog dialog = new Dialog(fields[0], fields[1].Replace("\\n", "\n"), fields[2]); // 캐릭터 이름과 대사를 Dialog 클래스에 저장
+            Dialog dialog = new Dialog(fields[0], fields[1].Replace("\\n", "\n").Replace(","," "), fields[2]); // 캐릭터 이름과 대사를 Dialog 클래스에 저장
             dialogs[current_scene_page].Add(dialog); // 대화 데이터를 리스트에 추가
         }
 
