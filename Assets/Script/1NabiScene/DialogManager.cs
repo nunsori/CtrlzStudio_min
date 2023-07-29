@@ -21,6 +21,11 @@ public class DialogManager : MonoBehaviour
     public Text characterNameText; // 캐릭터 이름을 출력할 UI 텍스트
     public TextMeshProUGUI dialogText; // 대사를 출력할 UI 텍스트
 
+    [Header("Dialog UI Text_list")]
+    //0 - default 1 - dim
+    public Text[] characterNameText_list; // 캐릭터 이름을 출력할 UI 텍스트
+    public TextMeshProUGUI[] dialogText_list; // 대사를 출력할 UI 텍스트
+
     [Header("Dialog 끝나고 음료만들기 버튼")]
     public GameObject Makingbutton;
 
@@ -84,16 +89,31 @@ public class DialogManager : MonoBehaviour
 
         
 
+        
+
+
+        Dialog dialog = dialogs[current_scene_page][currentDialogIndex]; // 출력할 대화 가져오기
+
+        if(dialog.production == "1")
+        {
+            characterNameText = characterNameText_list[1];
+            dialogText = dialogText_list[1];
+        }
+        else
+        {
+            characterNameText = characterNameText_list[0];
+            dialogText = dialogText_list[0];
+        }
+
+        characterNameText.text = dialog.characterName; // 캐릭터 이름 출력
+
+
         dialogText.text = "";
         Makingbutton.SetActive(false);
 
 
-        Dialog dialog = dialogs[current_scene_page][currentDialogIndex]; // 출력할 대화 가져오기
-        characterNameText.text = dialog.characterName; // 캐릭터 이름 출력
-
-
         // 대사 출력 함수 호출
-        if(isTyping == false)
+        if (isTyping == false)
         {
             StartCoroutine(TypeDialogText(dialog.text));
         }
@@ -115,14 +135,15 @@ public class DialogManager : MonoBehaviour
             case "0":
                 //default
                 state = dialog.production;
-
+                uI_Controller.dim_dialog(false);
 
 
                 break;
 
             case "1":
-                //other production
-                
+                //dim_production
+                state = dialog.production;
+                uI_Controller.dim_dialog(true);
 
                 break;
 
@@ -154,6 +175,7 @@ public class DialogManager : MonoBehaviour
     IEnumerator TypeDialogText(string text)
     {
         isTyping = true;
+        Debug.Log("typing_start");
         dialogText.text = "";
 
         string temp_str = "";
@@ -185,12 +207,15 @@ public class DialogManager : MonoBehaviour
             yield return new WaitForSeconds(typingSpeed);
         }
 
+        Debug.Log("typing_end");
+
         isTyping = false;
     }
 
     // 다음 대화로 넘어가는 함수
     public void NextDialog()
     {
+        Debug.Log("next_clicked");
         // 대사 출력 중일 때는 클릭이 무시되도록 함
         if (isTyping)
         {
@@ -209,7 +234,7 @@ public class DialogManager : MonoBehaviour
             //다음연출
             Debug.Log("next_stage@@@@@@@@@@@@@@@@");
             //next_page_dialog();
-            uI_Controller.make_finish_clicked();
+            uI_Controller.next_scene();
 
             return;
         }
@@ -219,7 +244,15 @@ public class DialogManager : MonoBehaviour
             Debug.Log("default");
             // 다음 대화로 이동
             currentDialogIndex++;
+            //uI_Controller.dim_dialog(false);
 
+            // 대화 출력 함수 호출
+            DisplayDialog();
+        }
+        else if(state == "1")
+        {
+            currentDialogIndex++;
+            //uI_Controller.dim_dialog(true);
             // 대화 출력 함수 호출
             DisplayDialog();
         }
@@ -252,6 +285,12 @@ public class DialogManager : MonoBehaviour
         LoadDialogsFromCSV();
 
         DisplayDialog();
+    }
+
+    public void reset_dialog()
+    {
+        dialogText.text = "";
+        characterNameText.text = "";
     }
 }
 

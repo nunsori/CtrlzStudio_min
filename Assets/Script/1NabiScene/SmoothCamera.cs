@@ -13,6 +13,8 @@ public class SmoothCamera : MonoBehaviour
 
     public GameObject Dialog;
 
+    public delegate void temp_fuc();
+
     private float t = 0f;
 
     private void Awake()

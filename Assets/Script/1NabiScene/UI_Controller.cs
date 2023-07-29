@@ -12,8 +12,13 @@ public class UI_Controller : MonoBehaviour
     [SerializeField]
     private GameObject[] ui_objs;
 
+    [SerializeField]
+    private GameObject dim_dialog_obj;
+
 
     public DialogManager dialogManager;
+
+    public SmoothCamera smoothCamera;
 
     public Image dim;
 
@@ -22,19 +27,25 @@ public class UI_Controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //초기 ui active 설정
+        ui_objs[0].SetActive(true);
+        ui_objs[1].SetActive(false);
+        ui_objs[2].SetActive(false);
+
+        dim_dialog_obj.SetActive(false);
+
+        dim.gameObject.SetActive(false);
+
         save_load_Data.Instance.load();
         //Debug.Log(save_load_Data.play_data.cur_progress);
         //Debug.Log(save_load_Data.Instance);
         Debug.Log(save_load_Data.Instance.play_data);
         DialogManager.currentDialogIndex = save_load_Data.Instance.play_data.cur_progress;
 
-        dim.gameObject.SetActive(false);
+        
 
 
-        //초기 ui active 설정
-        ui_objs[0].SetActive(true);
-        ui_objs[1].SetActive(false);
-        ui_objs[2].SetActive(false);
+        
     }
 
     // Update is called once per frame
@@ -50,6 +61,7 @@ public class UI_Controller : MonoBehaviour
         ui_objs[0].SetActive(false);
         ui_objs[1].SetActive(true);
         ui_objs[2].SetActive(false);
+        dim_dialog_obj.SetActive(false);
 
         //다이얼로그 활성화
         //dialogManager.currentDialogIndex = 0;
@@ -61,6 +73,24 @@ public class UI_Controller : MonoBehaviour
     {
         //ui_objs[1].SetActive(false);
         ui_objs[2].SetActive(true);
+        dim_dialog_obj.SetActive(false);
+        ui_objs[1].SetActive(false);
+        dialogManager.Makingbutton.SetActive(false);
+    }
+
+    public void dim_dialog(bool is_true)
+    {
+        if (is_true)
+        {
+            dim_dialog_obj.SetActive(true);
+            ui_objs[1].SetActive(false);
+
+        }
+        else
+        {
+            dim_dialog_obj.SetActive(false);
+            ui_objs[1].SetActive(true);
+        }
     }
 
 
@@ -68,29 +98,63 @@ public class UI_Controller : MonoBehaviour
     public void make_finish_clicked()
     {
         //ui 활성화 변경
-        //ui_objs[0].SetActive(false);
-        //ui_objs[1].SetActive(true);
-        //ui_objs[2].SetActive(false);
+        ui_objs[0].SetActive(false);
+        ui_objs[1].SetActive(true);
+        ui_objs[2].SetActive(false);
 
+        dialogManager.next_page_dialog();
 
-        production_controller.call_production(production_controller.Instance.fade_production(0,dim.gameObject, true, 2f));
+        smoothCamera.MoveMainScene();
 
-        //production_controller.Production_list.Add(call_function_delay(2f, new DialogManager.temp_fun(dialogManager.next_page_dialog)));
-        production_controller.call_production(call_function_delay(2f, new DialogManager.temp_fun(dialogManager.next_page_dialog)));
+        //fade in
+        //production_controller.call_production(production_controller.Instance.fade_production(0,dim.gameObject, true, 2f));
 
+        //next dialog 함수 호출
+        //production_controller.call_production(call_function_delay(4.5f, new DialogManager.temp_fun(dialogManager.next_page_dialog)));
+
+        //production_controller.call_production(call_function_delay(2.1f, new DialogManager.temp_fun(dialogManager.reset_dialog)));
+        
+        //production_controller.call_production(smooth_camera_call(2.1f, new SmoothCamera.temp_fuc(smoothCamera.MoveMainScene)));
+
+        //fade out 함수 호출
+        //production_controller.call_production(production_controller.Instance.fade_production(2.5f, dim.gameObject, false, 2f));
+
+        
+
+        //ui 조절
+        //production_controller.call_production(active_delay(2.1f, ui_objs[0], false));
+        //production_controller.call_production(active_delay(2.1f, ui_objs[1], true));
+        //production_controller.call_production(active_delay(2.1f, ui_objs[2], false));
+    }
+
+    public void next_scene()
+    {
+        //fade in
+        production_controller.call_production(production_controller.Instance.fade_production(0, dim.gameObject, true, 2f));
+
+        //next dialog 함수 호출
+        production_controller.call_production(call_function_delay(4.5f, new DialogManager.temp_fun(dialogManager.next_page_dialog)));
+
+        production_controller.call_production(call_function_delay(2.1f, new DialogManager.temp_fun(dialogManager.reset_dialog)));
+
+        production_controller.call_production(smooth_camera_call(2.1f, new SmoothCamera.temp_fuc(smoothCamera.MoveMainScene)));
+
+        //fade out 함수 호출
         production_controller.call_production(production_controller.Instance.fade_production(2.5f, dim.gameObject, false, 2f));
 
-        //production_controller.Production_list.Add(active_delay(0, dim.gameObject, true));
 
-        //production_controller.Production_list.Add(active_delay(4.5f, dim.gameObject, false));
-        production_controller.call_production(active_delay(4.5f, ui_objs[0], false));
-        production_controller.call_production(active_delay(4.5f, ui_objs[1], true));
-        production_controller.call_production(active_delay(4.5f, ui_objs[2], false));
-        //production_controller.Production_list.Add(active_delay(4.5f, ui_objs[0], false));
-        //production_controller.Production_list.Add(active_delay(4.5f, ui_objs[1], true));
-        //production_controller.Production_list.Add(active_delay(4.5f, ui_objs[2], false));
-        //dialogManager.NextDialog();
-        //dialogManager.next_page_dialog();
+
+        //ui 조절
+        production_controller.call_production(active_delay(2.1f, ui_objs[0], false));
+        production_controller.call_production(active_delay(2.1f, ui_objs[1], true));
+        production_controller.call_production(active_delay(2.1f, ui_objs[2], false));
+    }
+
+    IEnumerator smooth_camera_call(float delay_, SmoothCamera.temp_fuc function)
+    {
+        yield return new WaitForSeconds(delay_);
+
+        function();
     }
 
 
