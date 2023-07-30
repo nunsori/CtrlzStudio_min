@@ -70,7 +70,7 @@ public class DialogManager : MonoBehaviour
         {
             dialogs.Add(new List<Dialog>());
             string[] fields = lines[i].Split(','); // 쉼표로 구분된 값들을 배열로 읽어옴
-            Dialog dialog = new Dialog(fields[0], fields[1].Replace("\\n", "\n").Replace(","," "), fields[2]); // 캐릭터 이름과 대사를 Dialog 클래스에 저장
+            Dialog dialog = new Dialog(fields[0], fields[1].Replace("\\n", "\n"), fields[2]); // 캐릭터 이름과 대사를 Dialog 클래스에 저장
             dialogs[current_scene_page].Add(dialog); // 대화 데이터를 리스트에 추가
         }
 
@@ -112,12 +112,6 @@ public class DialogManager : MonoBehaviour
         Makingbutton.SetActive(false);
 
 
-        // 대사 출력 함수 호출
-        if (isTyping == false)
-        {
-            StartCoroutine(TypeDialogText(dialog.text));
-        }
-
         Debug.Log(dialog.production);
 
         //연출관련 함수
@@ -154,7 +148,17 @@ public class DialogManager : MonoBehaviour
                 Debug.Log("none");
 
                 break;
+
+
+
         
+        }
+
+
+        // 대사 출력 함수 호출
+        if (isTyping == false)
+        {
+            StartCoroutine(TypeDialogText(dialog.text));
         }
 
 
@@ -175,6 +179,19 @@ public class DialogManager : MonoBehaviour
     IEnumerator TypeDialogText(string text)
     {
         isTyping = true;
+
+
+        if(state == "0" && currentDialogIndex == 0)
+        {
+            //화면 시작연출 재생하기
+
+        }
+        else
+        {
+            //화면 연출 init 재생하기
+
+        }
+
         Debug.Log("typing_start");
         dialogText.text = "";
 

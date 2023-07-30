@@ -1,50 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1102 &-321974966825662642
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Option
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 94783f7ac9464fa4082593e68d61a452, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Button
+  m_Name: cafe_controller
   serializedVersion: 5
-  m_AnimatorParameters:
-  - m_Name: isActive
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+  m_AnimatorParameters: []
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
-    m_StateMachine: {fileID: 4921636759525578154}
+    m_StateMachine: {fileID: 3415135019427944048}
     m_Mask: {fileID: 0}
     m_Motions: []
     m_Behaviours: []
@@ -54,14 +22,14 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!1102 &4073727000532574382
+--- !u!1102 &75044509551920373
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: OptionQuit
+  m_Name: cafe_motion
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -74,13 +42,13 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 6eaf782149d2f8741ae81fc02e845f54, type: 2}
+  m_Motion: {fileID: 7400000, guid: f9400a1b3e364df4bb6302790fe42da2, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1107 &4921636759525578154
+--- !u!1107 &3415135019427944048
 AnimatorStateMachine:
   serializedVersion: 6
   m_ObjectHideFlags: 1
@@ -90,14 +58,11 @@ AnimatorStateMachine:
   m_Name: Base Layer
   m_ChildStates:
   - serializedVersion: 1
-    m_State: {fileID: -321974966825662642}
-    m_Position: {x: 400, y: 160, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 4073727000532574382}
-    m_Position: {x: 400, y: 260, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 6765727371106301322}
+    m_State: {fileID: 5366847996426225268}
     m_Position: {x: 400, y: 60, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 75044509551920373}
+    m_Position: {x: 400, y: 160, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -107,15 +72,15 @@ AnimatorStateMachine:
   m_EntryPosition: {x: 50, y: 120, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: 6765727371106301322}
---- !u!1102 &6765727371106301322
+  m_DefaultState: {fileID: 5366847996426225268}
+--- !u!1102 &5366847996426225268
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: default_state
+  m_Name: cafe_init
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -128,7 +93,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 0}
+  m_Motion: {fileID: 7400000, guid: a1358c76754c20b469753d6ec98845db, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
