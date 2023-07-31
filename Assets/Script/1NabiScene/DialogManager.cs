@@ -184,13 +184,18 @@ public class DialogManager : MonoBehaviour
         if(state == "0" && currentDialogIndex == 0)
         {
             //화면 시작연출 재생하기
-
+            uI_Controller.change_animation_state(uI_Controller.window_animator, "cafe_init");
+            uI_Controller.change_animation_state(uI_Controller.window_animator, "cafe_motion");
+            yield return new WaitForSeconds(uI_Controller.window_animator.GetCurrentAnimatorClipInfo(0).Length);
         }
         else
         {
             //화면 연출 init 재생하기
-
+            //uI_Controller.change_animation_state(uI_Controller.window_animator, "cafe_init");
+            
         }
+
+        
 
         Debug.Log("typing_start");
         dialogText.text = "";

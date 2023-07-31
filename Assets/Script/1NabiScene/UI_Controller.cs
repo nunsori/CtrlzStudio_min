@@ -24,6 +24,8 @@ public class UI_Controller : MonoBehaviour
 
     delegate void temp_fun();
 
+    public Animator window_animator = null;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +37,9 @@ public class UI_Controller : MonoBehaviour
         dim_dialog_obj.SetActive(false);
 
         dim.gameObject.SetActive(false);
+
+        change_animation_state(window_animator, "cafe_init");
+        
 
         save_load_Data.Instance.load();
         //Debug.Log(save_load_Data.play_data.cur_progress);
@@ -198,6 +203,16 @@ public class UI_Controller : MonoBehaviour
 
     //public void 
 
+
+    public void change_animation_state(Animator animator, string state_name)
+    {
+        // stop from interrupting by same animation
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName(state_name)) return;
+
+        //animation play
+        animator.Play(state_name);
+
+    }
 
 
 
