@@ -10,7 +10,7 @@ public class UI_Controller : MonoBehaviour
      * 2 - 2-2 UI
     */
     [SerializeField]
-    private GameObject[] ui_objs;
+    public GameObject[] ui_objs;
 
     [SerializeField]
     private GameObject dim_dialog_obj;
@@ -88,12 +88,14 @@ public class UI_Controller : MonoBehaviour
         //fade out 함수 호출
         production_controller.call_production(production_controller.Instance.fade_production(2.5f, dim.gameObject, false, 2f));
 
-        production_controller.call_production(smooth_camera_call(2.1f, new SmoothCamera.temp_fuc(smoothCamera.MoveCupScene)));
+        
+
+        production_controller.call_production(smooth_camera_call(2.5f, new SmoothCamera.temp_fuc(smoothCamera.MoveCupScene)));
 
 
 
         //ui 조절
-        production_controller.call_production(active_delay(2.5f, dim_dialog_obj, false));
+        production_controller.call_production(active_delay(2.1f, dim_dialog_obj, false));
         production_controller.call_production(active_delay(2.1f, ui_objs[1], false));
         production_controller.call_production(active_delay(2.1f, ui_objs[2], true));
         production_controller.call_production(active_delay(2.1f, dialogManager.Makingbutton, false));
@@ -138,6 +140,8 @@ public class UI_Controller : MonoBehaviour
         //fade in
         production_controller.call_production(production_controller.Instance.fade_production(0,dim.gameObject, true, 2f));
 
+        production_controller.call_production(call_function_cafe_init(2.1f));
+
         //next dialog 함수 호출
         production_controller.call_production(call_function_delay(4.5f, new DialogManager.temp_fun(dialogManager.next_page_dialog)));
 
@@ -158,8 +162,13 @@ public class UI_Controller : MonoBehaviour
 
     public void next_scene()
     {
+
+        
         //fade in
         production_controller.call_production(production_controller.Instance.fade_production(0, dim.gameObject, true, 2f));
+
+        //
+        production_controller.call_production(call_function_cafe_init(2.1f));
 
         //next dialog 함수 호출
         production_controller.call_production(call_function_delay(4.5f, new DialogManager.temp_fun(dialogManager.next_page_dialog)));
@@ -192,6 +201,13 @@ public class UI_Controller : MonoBehaviour
         yield return new WaitForSeconds(delay_);
 
         function();
+    }
+
+    IEnumerator call_function_cafe_init(float delay_)
+    {
+        yield return new WaitForSeconds(delay_);
+
+        change_animation_state(window_animator, "cafe_init");
     }
 
     IEnumerator active_delay(float delay_, GameObject obj, bool is_active)

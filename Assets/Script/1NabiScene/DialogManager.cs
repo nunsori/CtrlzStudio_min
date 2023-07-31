@@ -130,6 +130,23 @@ public class DialogManager : MonoBehaviour
                 //default
                 state = dialog.production;
                 uI_Controller.dim_dialog(false);
+                uI_Controller.ui_objs[1].SetActive(true);
+
+                uI_Controller.ui_objs[1].transform.GetChild(0).gameObject.SetActive(true);
+                uI_Controller.ui_objs[1].transform.GetChild(1).gameObject.SetActive(true);
+
+
+                break;
+            case "11":
+                state = dialog.production;
+                uI_Controller.dim_dialog(true);
+                uI_Controller.ui_objs[1].SetActive(true);
+
+                uI_Controller.ui_objs[1].transform.GetChild(0).gameObject.SetActive(false);
+                uI_Controller.ui_objs[1].transform.GetChild(1).gameObject.SetActive(true);
+
+                dialogText_list[1].text = "";
+                characterNameText_list[1].text = "";
 
 
                 break;
@@ -138,6 +155,7 @@ public class DialogManager : MonoBehaviour
                 //dim_production
                 state = dialog.production;
                 uI_Controller.dim_dialog(true);
+                uI_Controller.ui_objs[1].SetActive(false);
 
                 break;
 
@@ -184,7 +202,6 @@ public class DialogManager : MonoBehaviour
         if(state == "0" && currentDialogIndex == 0)
         {
             //화면 시작연출 재생하기
-            uI_Controller.change_animation_state(uI_Controller.window_animator, "cafe_init");
             uI_Controller.change_animation_state(uI_Controller.window_animator, "cafe_motion");
             yield return new WaitForSeconds(uI_Controller.window_animator.GetCurrentAnimatorClipInfo(0).Length);
         }
@@ -271,7 +288,7 @@ public class DialogManager : MonoBehaviour
             // 대화 출력 함수 호출
             DisplayDialog();
         }
-        else if(state == "1")
+        else if(state == "1" || state == "11")
         {
             currentDialogIndex++;
             //uI_Controller.dim_dialog(true);
@@ -321,6 +338,7 @@ public class Dialog
     public string characterName; // 캐릭터 이름
     public string text; // 대사
     public string production; // 연출 목록
+    //public string production_sticker;
 
     //텍스트 표시 UI
     public Dialog(string characterName, string text, string production)
@@ -328,5 +346,6 @@ public class Dialog
         this.characterName = characterName;
         this.text = text;
         this.production = production;
+        //this.production_sticker = production_sticker;
     }
 }
