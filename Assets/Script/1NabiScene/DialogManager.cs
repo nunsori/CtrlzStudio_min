@@ -188,7 +188,8 @@ public class DialogManager : MonoBehaviour
         }
         else
         { // 캐릭터 이름이 비어있으면 이전 캐릭터 이름과 같은 이름으로 출력
-            characterNameText.text = dialogs[current_scene_page][currentDialogIndex - 1].characterName;
+            //characterNameText.text = dialogs[current_scene_page][currentDialogIndex - 1].characterName;
+            characterNameText.text = "";
         }
 
     }

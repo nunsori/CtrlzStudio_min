@@ -12,6 +12,9 @@ public class UI_Controller : MonoBehaviour
     [SerializeField]
     public GameObject[] ui_objs;
 
+    //0 - make 1 - finish
+    public GameObject[] drink_ui_set;
+
     [SerializeField]
     private GameObject dim_dialog_obj;
 
@@ -26,6 +29,16 @@ public class UI_Controller : MonoBehaviour
 
     public Animator window_animator = null;
 
+    public GameObject[] make_drink_objs;
+
+    public GameObject[] finish_titles;
+
+    public Animator[] drink_animator;
+
+    private bool is_progress = false;
+
+    private bool is_drink = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +52,19 @@ public class UI_Controller : MonoBehaviour
         dim.gameObject.SetActive(false);
 
         change_animation_state(window_animator, "cafe_init");
-        
+
+        for(int i =0; i<make_drink_objs.Length; i++)
+        {
+            make_drink_objs[i].SetActive(false);
+        }
+
+        for(int i =0; i<finish_titles.Length; i++)
+        {
+            finish_titles[i].SetActive(false);
+        }
+
+        is_progress = false;
+        is_drink = false;
 
         save_load_Data.Instance.load();
         //Debug.Log(save_load_Data.play_data.cur_progress);
@@ -56,6 +81,29 @@ public class UI_Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (is_drink)
+        {
+            if (is_progress)
+            {
+                drink_animator[DialogManager.current_scene_page].speed = 1f;
+                change_animation_state(drink_animator[DialogManager.current_scene_page], "animated_drink|CircleAction");
+                
+            }
+            else
+            {
+                drink_animator[DialogManager.current_scene_page].speed = 0f;
+                
+            }
+
+            if(drink_animator[DialogManager.current_scene_page].GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+            {
+                is_progress = false;
+                is_drink = false;
+                Debug.Log("진행완료");
+                //함수실행
+                finish_drink();
+            }
+        }
         
     }
 
@@ -81,6 +129,20 @@ public class UI_Controller : MonoBehaviour
         //dim_dialog_obj.SetActive(false);
         //ui_objs[1].SetActive(false);
         //dialogManager.Makingbutton.SetActive(false);
+        //make_drink_objs[DialogManager.current_scene_page].SetActive(true);
+        for(int i = 0; i<make_drink_objs.Length; i++)
+        {
+            make_drink_objs[i].SetActive(DialogManager.current_scene_page == i);
+        }
+
+        is_drink = true;
+        drink_ui_set[0].SetActive(true);
+        drink_ui_set[1].SetActive(false);
+
+        drink_animator[DialogManager.current_scene_page].speed = 0f;
+        drink_animator[DialogManager.current_scene_page].Play("animated_drink|CircleAction");
+
+        Debug.Log("current page index : " + DialogManager.current_scene_page);
 
         //fade in
         production_controller.call_production(production_controller.Instance.fade_production(0, dim.gameObject, true, 2f));
@@ -181,11 +243,22 @@ public class UI_Controller : MonoBehaviour
         production_controller.call_production(production_controller.Instance.fade_production(2.5f, dim.gameObject, false, 2f));
 
 
-
+        is_drink = false;
         //ui 조절
         production_controller.call_production(active_delay(2.1f, ui_objs[0], false));
         production_controller.call_production(active_delay(2.1f, ui_objs[1], true));
         production_controller.call_production(active_delay(2.1f, ui_objs[2], false));
+    }
+
+
+    public void finish_drink()
+    {
+        drink_ui_set[0].SetActive(false);
+        drink_ui_set[1].SetActive(true);
+
+        //이후 연출추가
+
+
     }
 
     IEnumerator smooth_camera_call(float delay_, SmoothCamera.temp_fuc function)
@@ -228,6 +301,18 @@ public class UI_Controller : MonoBehaviour
         //animation play
         animator.Play(state_name);
 
+        
+
+    }
+
+    public void pointer_down()
+    {
+        is_progress = true;
+    }
+
+    public void pointer_up()
+    {
+        is_progress=false;
     }
 
 

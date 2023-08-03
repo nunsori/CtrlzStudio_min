@@ -538,6 +538,7 @@ GameObject:
   - component: {fileID: 244643730}
   - component: {fileID: 244643729}
   - component: {fileID: 244643728}
+  - component: {fileID: 244643731}
   m_Layer: 5
   m_Name: B 2-2-1 Button
   m_TagString: Untagged
@@ -647,6 +648,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 244643726}
   m_CullTransparentMesh: 1
+--- !u!114 &244643731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244643726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1697750075}
+          m_TargetAssemblyTypeName: UI_Controller, Assembly-CSharp
+          m_MethodName: pointer_up
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1697750075}
+          m_TargetAssemblyTypeName: UI_Controller, Assembly-CSharp
+          m_MethodName: pointer_down
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &249295874
 GameObject:
   m_ObjectHideFlags: 0
@@ -5211,11 +5257,19 @@ MonoBehaviour:
   - {fileID: 1913840693}
   - {fileID: 5345455}
   - {fileID: 1065229594}
+  drink_ui_set:
+  - {fileID: 244643726}
+  - {fileID: 1418746522}
   dim_dialog_obj: {fileID: 1668703668}
   dialogManager: {fileID: 1697750073}
   smoothCamera: {fileID: 527547326}
   dim: {fileID: 2087862947}
   window_animator: {fileID: 9053766782698037553}
+  make_drink_objs:
+  - {fileID: 1226554103}
+  finish_titles: []
+  drink_animator:
+  - {fileID: 651161356}
 --- !u!1 &1719203553
 GameObject:
   m_ObjectHideFlags: 0
