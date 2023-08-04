@@ -48,18 +48,31 @@ public class DialogManager : MonoBehaviour
 
     public delegate void temp_fun();
 
+    private void Awake()
+    {
+        for(current_scene_page = 0; current_scene_page<filePath.Length; current_scene_page++)
+        {
+            LoadDialogsFromCSV();
+        }
+    }
+
     void Start()
     {
         current_scene_page = 0;
         currentDialogIndex = 0;
         Makingbutton.SetActive(false);
-        LoadDialogsFromCSV();
+        //LoadDialogsFromCSV();
 
         uI_Controller = gameObject.GetComponent<UI_Controller>();
         //DisplayDialog();
-        
 
-    
+        for (int i = 0; i < uI_Controller.make_drink_objs.Length; i++)
+        {
+            uI_Controller.make_drink_objs[i].SetActive(Mathf.FloorToInt(DialogManager.current_scene_page / 2) == i);
+        }
+
+
+
     }
 
     void LoadDialogsFromCSV()
@@ -70,7 +83,7 @@ public class DialogManager : MonoBehaviour
         {
             dialogs.Add(new List<Dialog>());
             string[] fields = lines[i].Split(','); // 쉼표로 구분된 값들을 배열로 읽어옴
-            Dialog dialog = new Dialog(fields[0], fields[1].Replace("\\n", "\n"), fields[2]); // 캐릭터 이름과 대사를 Dialog 클래스에 저장
+            Dialog dialog = new Dialog(fields[0], fields[1].Replace("\\n", "\n"), fields[2], fields[3]); // 캐릭터 이름과 대사를 Dialog 클래스에 저장
             dialogs[current_scene_page].Add(dialog); // 대화 데이터를 리스트에 추가
         }
 
@@ -169,8 +182,53 @@ public class DialogManager : MonoBehaviour
 
 
 
-        
+
         }
+
+        string[] production_additional = dialog.production_additional.Split('/');
+
+        Debug.Log(production_additional);
+
+        uI_Controller.image_obj.SetActive(false);
+        for (int i = 0; i < uI_Controller.sticker_set.Length; i++)
+        {
+            uI_Controller.sticker_set[i].SetActive(false);
+        }
+
+        switch (production_additional[0]) {
+            case "0":
+                //아무것도 안띄우기
+                Debug.Log("default_on");
+                uI_Controller.image_obj.SetActive(false);
+                for(int i =0; i<uI_Controller.sticker_set.Length; i++)
+                {
+                    uI_Controller.sticker_set[i].SetActive(false);
+                }
+                break;
+
+            case "1":
+                Debug.Log("image_on");
+                //image
+                uI_Controller.image_obj.SetActive(false);
+                uI_Controller.image_obj.GetComponent<Image>().sprite = uI_Controller.image_set[int.Parse(production_additional[1])];
+
+                production_controller.call_production(production_controller.Instance.fade_production(0, uI_Controller.image_obj, true, 0.4f));
+                break;
+
+
+            case "2":
+                Debug.Log("sticker_on");
+                uI_Controller.sticker_set[int.Parse(production_additional[1])].SetActive(true);
+
+                break;
+
+
+            default:
+
+                break;
+
+        }
+
 
 
         // 대사 출력 함수 호출
@@ -322,7 +380,9 @@ public class DialogManager : MonoBehaviour
         current_scene_page++;
         currentDialogIndex = 0;
 
-        LoadDialogsFromCSV();
+        
+
+        //LoadDialogsFromCSV();
 
         DisplayDialog();
     }
@@ -339,14 +399,14 @@ public class Dialog
     public string characterName; // 캐릭터 이름
     public string text; // 대사
     public string production; // 연출 목록
-    //public string production_sticker;
+    public string production_additional;
 
     //텍스트 표시 UI
-    public Dialog(string characterName, string text, string production)
+    public Dialog(string characterName, string text, string production, string production_additional)
     {
         this.characterName = characterName;
         this.text = text;
         this.production = production;
-        //this.production_sticker = production_sticker;
+        this.production_additional = production_additional;
     }
 }

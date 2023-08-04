@@ -31,13 +31,22 @@ public class UI_Controller : MonoBehaviour
 
     public GameObject[] make_drink_objs;
 
-    public GameObject[] finish_titles;
+    public GameObject finish_title;
 
     public Animator[] drink_animator;
 
     private bool is_progress = false;
 
     private bool is_drink = false;
+
+    [Header("연출이미지 리스트")]
+    public Sprite[] image_set;
+
+    public GameObject image_obj;
+
+    [Header("스티커 리스트")]
+    public GameObject[] sticker_set;
+
 
     // Start is called before the first frame update
     void Start()
@@ -58,9 +67,14 @@ public class UI_Controller : MonoBehaviour
             make_drink_objs[i].SetActive(false);
         }
 
-        for(int i =0; i<finish_titles.Length; i++)
+        finish_title.SetActive(false);
+        finish_title.GetComponent<CanvasGroup>().alpha = 0f;
+
+        image_obj.SetActive(false);
+
+        for(int i =0; i<sticker_set.Length; i++)
         {
-            finish_titles[i].SetActive(false);
+            sticker_set[i].SetActive(false);
         }
 
         is_progress = false;
@@ -70,7 +84,7 @@ public class UI_Controller : MonoBehaviour
         //Debug.Log(save_load_Data.play_data.cur_progress);
         //Debug.Log(save_load_Data.Instance);
         Debug.Log(save_load_Data.Instance.play_data);
-        DialogManager.currentDialogIndex = save_load_Data.Instance.play_data.cur_progress;
+        //DialogManager.currentDialogIndex = save_load_Data.Instance.play_data.cur_progress;
 
         
 
@@ -85,17 +99,17 @@ public class UI_Controller : MonoBehaviour
         {
             if (is_progress)
             {
-                drink_animator[DialogManager.current_scene_page].speed = 1f;
-                change_animation_state(drink_animator[DialogManager.current_scene_page], "animated_drink|CircleAction");
+                drink_animator[Mathf.FloorToInt(DialogManager.current_scene_page / 2)].speed = 1f;
+                change_animation_state(drink_animator[Mathf.FloorToInt(DialogManager.current_scene_page / 2)], "animated_drink|CircleAction");
                 
             }
             else
             {
-                drink_animator[DialogManager.current_scene_page].speed = 0f;
+                drink_animator[Mathf.FloorToInt(DialogManager.current_scene_page / 2)].speed = 0f;
                 
             }
 
-            if(drink_animator[DialogManager.current_scene_page].GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+            if(drink_animator[Mathf.FloorToInt(DialogManager.current_scene_page / 2)].GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
             {
                 is_progress = false;
                 is_drink = false;
@@ -132,35 +146,41 @@ public class UI_Controller : MonoBehaviour
         //make_drink_objs[DialogManager.current_scene_page].SetActive(true);
         for(int i = 0; i<make_drink_objs.Length; i++)
         {
-            make_drink_objs[i].SetActive(DialogManager.current_scene_page == i);
+            make_drink_objs[i].SetActive(Mathf.FloorToInt(DialogManager.current_scene_page/2) == i);
         }
 
         is_drink = true;
         drink_ui_set[0].SetActive(true);
         drink_ui_set[1].SetActive(false);
 
-        drink_animator[DialogManager.current_scene_page].speed = 0f;
-        drink_animator[DialogManager.current_scene_page].Play("animated_drink|CircleAction");
+        finish_title.SetActive(false);
+        finish_title.GetComponent<CanvasGroup>().alpha = 0f;
+
+
+        drink_animator[Mathf.FloorToInt(DialogManager.current_scene_page / 2)].speed = 0f;
+        drink_animator[Mathf.FloorToInt(DialogManager.current_scene_page/2)].Play("animated_drink|CircleAction");
+        
+        drink_animator[Mathf.FloorToInt(DialogManager.current_scene_page / 2)].Rebind();
 
         Debug.Log("current page index : " + DialogManager.current_scene_page);
 
         //fade in
-        production_controller.call_production(production_controller.Instance.fade_production(0, dim.gameObject, true, 2f));
+        production_controller.call_production(production_controller.Instance.fade_production(0, dim.gameObject, true, 0.7f));
 
         //fade out 함수 호출
-        production_controller.call_production(production_controller.Instance.fade_production(2.5f, dim.gameObject, false, 2f));
+        production_controller.call_production(production_controller.Instance.fade_production(1.1f, dim.gameObject, false, 0.7f));
 
         
 
-        production_controller.call_production(smooth_camera_call(2.5f, new SmoothCamera.temp_fuc(smoothCamera.MoveCupScene)));
+        production_controller.call_production(smooth_camera_call(1f, new SmoothCamera.temp_fuc(smoothCamera.MoveCupScene)));
 
 
 
         //ui 조절
-        production_controller.call_production(active_delay(2.1f, dim_dialog_obj, false));
-        production_controller.call_production(active_delay(2.1f, ui_objs[1], false));
-        production_controller.call_production(active_delay(2.1f, ui_objs[2], true));
-        production_controller.call_production(active_delay(2.1f, dialogManager.Makingbutton, false));
+        production_controller.call_production(active_delay(1f, dim_dialog_obj, false));
+        production_controller.call_production(active_delay(1f, ui_objs[1], false));
+        production_controller.call_production(active_delay(1f, ui_objs[2], true));
+        production_controller.call_production(active_delay(1f, dialogManager.Makingbutton, false));
 
 
 
@@ -199,64 +219,94 @@ public class UI_Controller : MonoBehaviour
 
         //smoothCamera.MoveMainScene();
 
-        //fade in
-        production_controller.call_production(production_controller.Instance.fade_production(0,dim.gameObject, true, 2f));
+        for (int i = 0; i < make_drink_objs.Length; i++)
+        {
+            make_drink_objs[i].SetActive(Mathf.FloorToInt(DialogManager.current_scene_page / 2) == i);
+        }
 
-        production_controller.call_production(call_function_cafe_init(2.1f));
+        //fade in
+        production_controller.call_production(production_controller.Instance.fade_production(0,dim.gameObject, true, 0.7f));
+
+        production_controller.call_production(call_function_cafe_init(1f));
 
         //next dialog 함수 호출
-        production_controller.call_production(call_function_delay(4.5f, new DialogManager.temp_fun(dialogManager.next_page_dialog)));
+        production_controller.call_production(call_function_delay(2f, new DialogManager.temp_fun(dialogManager.next_page_dialog)));
 
-        production_controller.call_production(call_function_delay(2.1f, new DialogManager.temp_fun(dialogManager.reset_dialog)));
+        production_controller.call_production(call_function_delay(1f, new DialogManager.temp_fun(dialogManager.reset_dialog)));
         
-        production_controller.call_production(smooth_camera_call(2.1f, new SmoothCamera.temp_fuc(smoothCamera.MoveMainScene)));
+        production_controller.call_production(smooth_camera_call(1f, new SmoothCamera.temp_fuc(smoothCamera.MoveMainScene)));
 
         //fade out 함수 호출
-        production_controller.call_production(production_controller.Instance.fade_production(2.5f, dim.gameObject, false, 2f));
+        production_controller.call_production(production_controller.Instance.fade_production(1.1f, dim.gameObject, false, 0.7f));
 
         
 
         //ui 조절
-        production_controller.call_production(active_delay(2.1f, ui_objs[0], false));
-        production_controller.call_production(active_delay(2.1f, ui_objs[1], true));
-        production_controller.call_production(active_delay(2.1f, ui_objs[2], false));
+        production_controller.call_production(active_delay(1f, ui_objs[0], false));
+        production_controller.call_production(active_delay(1f, ui_objs[1], true));
+        production_controller.call_production(active_delay(1f, ui_objs[2], false));
     }
 
     public void next_scene()
     {
 
-        
+        for (int i = 0; i < make_drink_objs.Length; i++)
+        {
+            make_drink_objs[i].SetActive(Mathf.FloorToInt(DialogManager.current_scene_page / 2) == i);
+        }
+
         //fade in
-        production_controller.call_production(production_controller.Instance.fade_production(0, dim.gameObject, true, 2f));
+        production_controller.call_production(production_controller.Instance.fade_production(0, dim.gameObject, true, 0.7f));
 
         //
-        production_controller.call_production(call_function_cafe_init(2.1f));
+        production_controller.call_production(call_function_cafe_init(1f));
 
         //next dialog 함수 호출
-        production_controller.call_production(call_function_delay(4.5f, new DialogManager.temp_fun(dialogManager.next_page_dialog)));
+        if (dialogManager.dialogs[DialogManager.current_scene_page + 1][0].production == "1")
+        {
+            dim_dialog_obj.SetActive(true);
+            dialogManager.characterNameText_list[0].text = "";
+            dialogManager.dialogText_list[0].text = "";
+            dialogManager.characterNameText_list[1].text = "";
+            dialogManager.dialogText_list[1].text = "";
 
-        production_controller.call_production(call_function_delay(2.1f, new DialogManager.temp_fun(dialogManager.reset_dialog)));
+            production_controller.call_production(active_delay(1f, ui_objs[0], false));
+            production_controller.call_production(active_delay(1f, ui_objs[1], false));
+            production_controller.call_production(active_delay(1f, ui_objs[2], false));
 
-        production_controller.call_production(smooth_camera_call(2.1f, new SmoothCamera.temp_fuc(smoothCamera.MoveMainScene)));
+            production_controller.call_production(active_delay(1f, dim_dialog_obj, true));
+        }
+        else
+        {
+            production_controller.call_production(active_delay(1f, ui_objs[0], false));
+            production_controller.call_production(active_delay(1f, ui_objs[1], true));
+            production_controller.call_production(active_delay(1f, ui_objs[2], false));
+        }
+        production_controller.call_production(call_function_delay(2f, new DialogManager.temp_fun(dialogManager.next_page_dialog)));
+
+        production_controller.call_production(call_function_delay(1f, new DialogManager.temp_fun(dialogManager.reset_dialog)));
+
+        production_controller.call_production(smooth_camera_call(1f, new SmoothCamera.temp_fuc(smoothCamera.MoveMainScene)));
 
         //fade out 함수 호출
-        production_controller.call_production(production_controller.Instance.fade_production(2.5f, dim.gameObject, false, 2f));
+        production_controller.call_production(production_controller.Instance.fade_production(1.1f, dim.gameObject, false, 0.7f));
 
 
         is_drink = false;
         //ui 조절
-        production_controller.call_production(active_delay(2.1f, ui_objs[0], false));
-        production_controller.call_production(active_delay(2.1f, ui_objs[1], true));
-        production_controller.call_production(active_delay(2.1f, ui_objs[2], false));
+        
     }
 
 
     public void finish_drink()
     {
         drink_ui_set[0].SetActive(false);
-        drink_ui_set[1].SetActive(true);
+        //drink_ui_set[1].SetActive(true);
 
         //이후 연출추가
+        production_controller.call_production(production_controller.Instance.fade_production(0, finish_title, true, 1.5f));
+
+        production_controller.call_production(active_delay(2f, drink_ui_set[1], true));
 
 
     }
