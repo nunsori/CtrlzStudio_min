@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Video;
+using UnityEngine.SceneManagement;
 
 public class UI_Controller : MonoBehaviour
 {
@@ -47,14 +49,32 @@ public class UI_Controller : MonoBehaviour
     [Header("스티커 리스트")]
     public GameObject[] sticker_set;
 
+    [Header("비디오 플레이어")]
+    public GameObject video_player_obj;
+    public VideoPlayer videoPlayer = null;
+    private bool is_video_on = false;
+
+
+    [Header("UI 모음")]
+    public GameObject check_home_obj;
+    public GameObject option_popup_obj;
+
+    //0 - bgm , 1 - effect
+    public Slider[] option_slider_set;
 
     // Start is called before the first frame update
     void Start()
     {
+        
+
         //초기 ui active 설정
         ui_objs[0].SetActive(true);
         ui_objs[1].SetActive(false);
         ui_objs[2].SetActive(false);
+        video_player_obj.SetActive(false);
+
+        check_home_obj.SetActive(false);
+        option_popup_obj.SetActive(false);
 
         dim_dialog_obj.SetActive(false);
 
@@ -64,7 +84,7 @@ public class UI_Controller : MonoBehaviour
 
         for(int i =0; i<make_drink_objs.Length; i++)
         {
-            make_drink_objs[i].SetActive(false);
+            //make_drink_objs[i].SetActive(false);
         }
 
         finish_title.SetActive(false);
@@ -79,8 +99,13 @@ public class UI_Controller : MonoBehaviour
 
         is_progress = false;
         is_drink = false;
+        is_video_on = false;
 
-        save_load_Data.Instance.load();
+        videoPlayer.loopPointReached += video_over;
+
+        
+
+        //save_load_Data.Instance.load();
         //Debug.Log(save_load_Data.play_data.cur_progress);
         //Debug.Log(save_load_Data.Instance);
         Debug.Log(save_load_Data.Instance.play_data);
@@ -118,6 +143,15 @@ public class UI_Controller : MonoBehaviour
                 finish_drink();
             }
         }
+
+        if (is_video_on)
+        {
+            //if(!videoPlayer.isPlaying)
+            //{
+                //is_video_on = false;
+                //SceneManager.LoadScene("StartScene");
+            //}
+        }
         
     }
 
@@ -132,6 +166,26 @@ public class UI_Controller : MonoBehaviour
 
         //다이얼로그 활성화
         //dialogManager.currentDialogIndex = 0;
+
+        
+
+        for (int i = 0; i < make_drink_objs.Length; i++)
+        {
+            make_drink_objs[i].SetActive(Mathf.FloorToInt(DialogManager.current_scene_page / 2) == i);
+            if(Mathf.FloorToInt(DialogManager.current_scene_page / 2) == i)
+            {
+                Debug.Log("on @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+            }
+            else
+            {
+                Debug.Log("off @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+            }
+        }
+
+
+
+        sound_sr.Instance.Play_BGM("1", save_load_Data.Instance.play_data.BGM_Volume, true);
+
         dialogManager.DisplayDialog();
     }
 
@@ -144,7 +198,11 @@ public class UI_Controller : MonoBehaviour
         //ui_objs[1].SetActive(false);
         //dialogManager.Makingbutton.SetActive(false);
         //make_drink_objs[DialogManager.current_scene_page].SetActive(true);
-        for(int i = 0; i<make_drink_objs.Length; i++)
+        sound_sr.Instance.Play_Effect("2", save_load_Data.Instance.play_data.Narr_Volume, false);
+        sound_sr.Instance.Play_BGM("2", save_load_Data.Instance.play_data.BGM_Volume, false);
+
+
+        for (int i = 0; i<make_drink_objs.Length; i++)
         {
             make_drink_objs[i].SetActive(Mathf.FloorToInt(DialogManager.current_scene_page/2) == i);
         }
@@ -249,11 +307,15 @@ public class UI_Controller : MonoBehaviour
 
     public void next_scene()
     {
+        //DialogManager.current_scene_page++;
+        //DialogManager.currentDialogIndex = 0;
 
         for (int i = 0; i < make_drink_objs.Length; i++)
         {
-            make_drink_objs[i].SetActive(Mathf.FloorToInt(DialogManager.current_scene_page / 2) == i);
+            make_drink_objs[i].SetActive(Mathf.FloorToInt(DialogManager.current_scene_page + 1 / 2 ) == i);
         }
+
+
 
         //fade in
         production_controller.call_production(production_controller.Instance.fade_production(0, dim.gameObject, true, 0.7f));
@@ -365,6 +427,101 @@ public class UI_Controller : MonoBehaviour
         is_progress=false;
     }
 
+    public void ending()
+    {
+        video_player_obj.SetActive(true);
+
+        dim.gameObject.SetActive(true);
+
+        videoPlayer.Play();
+
+        //is_video_on = true;
+    }
+
+    public void video_over(UnityEngine.Video.VideoPlayer vp)
+    {
+        if(!videoPlayer.isPlaying)
+        {
+            is_video_on = false;
+            SceneManager.LoadScene("StartScene");
+        }
+    }
+
+    public void call_home()
+    {
+        for(int i =0; i<save_load_Data.Instance.play_data.progress_slot.Length; i++)
+        {
+            if(save_load_Data.Instance.play_data.progress_slot[i] == -1)
+            {
+                save_load_Data.Instance.play_data.progress_slot[i] = DialogManager.current_scene_page;
+                break;
+            }
+
+            if(i == save_load_Data.Instance.play_data.progress_slot.Length - 1 && save_load_Data.Instance.play_data.progress_slot[i] != -1)
+            {
+                save_load_Data.Instance.play_data.progress_slot[0] = DialogManager.current_scene_page;
+            }
+        }
+
+        save_load_Data.Instance.play_data.cur_progress = DialogManager.current_scene_page;
+
+        save_load_Data.Instance.save();
+
+        SceneManager.LoadScene("StartScene");
+    }
+
+    public void open_ui(int temp)
+    {
+        if(temp == 0)
+        {
+            production_controller.call_production(production_controller.Instance.fade_production(0, check_home_obj, true, 0.2f));
+        }
+        else if(temp == 1)
+        {
+            production_controller.call_production(production_controller.Instance.fade_production(0, option_popup_obj, true, 0.2f));
+        }
+    }
+
+    public void close_ui(int temp)
+    {
+        if (temp == 0)
+        {
+            production_controller.call_production(production_controller.Instance.fade_production(0, check_home_obj, false, 0.2f));
+        }
+        else if (temp == 1)
+        {
+            production_controller.call_production(production_controller.Instance.fade_production(0, option_popup_obj, false, 0.2f));
+        }
+    }
+
+
+    public void change_slider(string slider_name)
+    {
+        switch (slider_name)
+        {
+            case ("BGM"):
+                //BGM volume 조절
+                save_load_Data.Instance.play_data.BGM_Volume = option_slider_set[0].value;
+
+                sound_sr.Instance.change_sound();
+
+                break;
+
+
+            case ("NARR"):
+                //narration volume 조절
+                save_load_Data.Instance.play_data.Narr_Volume = option_slider_set[1].value;
+
+                sound_sr.Instance.change_sound();
+
+                break;
+
+
+            default:
+
+                break;
+        }
+    }
 
 
 
