@@ -164,7 +164,7 @@ public class DialogManager : MonoBehaviour
 
                 break;
 
-            case "ÀÌ½Â":
+            case "ÀÌ ½Â":
                 char_model[2].SetActive(true);
                 //uI_Controller.change_animation_state(model_animator[2], state_name[0]);
 
