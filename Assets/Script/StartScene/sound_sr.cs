@@ -90,4 +90,14 @@ public class sound_sr : MonoBehaviour
 
         Debug.Log("not effect : " + name + "\n or all effects are playing");
     }
+
+
+    public void change_sound()
+    {
+        BGM.volume = save_load_Data.Instance.play_data.BGM_Volume;
+        for(int i =0; i<Effects.Length; i++)
+        {
+            Effects[i].volume = save_load_Data.Instance.play_data.Narr_Volume;
+        }
+    }
 }

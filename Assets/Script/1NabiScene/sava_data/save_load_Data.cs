@@ -21,6 +21,8 @@ public class data_
 
     public int cur_progress = 0;
 
+    public int[] progress_slot;
+
     public bool[] progress_arr = { false, false, false, false, false };
 
 
@@ -36,7 +38,11 @@ public class data_
         temp = 0;
         cur_progress = 0;
         progress_arr = new bool[5];
-
+        progress_slot = new int[3];
+        for(int i =0; i<progress_slot.Length; i++)
+        {
+            progress_slot[i] = -1;
+        }
         //
         BGM_Volume = 0.5f;
         Narr_Volume = 0.5f;
@@ -105,6 +111,7 @@ public class save_load_Data : MonoBehaviour
         File.WriteAllText(data_path + data_file_name, data_string_temp);
 
         Debug.Log("save complete");
+        Debug.Log(play_data);
     }
 
     //로드 함수

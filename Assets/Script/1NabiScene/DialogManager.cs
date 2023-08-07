@@ -6,7 +6,8 @@ using UnityEngine.UI;
 using TMPro;
 
 public class DialogManager : MonoBehaviour
-{    [Header("CSV 파일 경로")]
+{   
+    [Header("CSV 파일 경로")]
     [Tooltip("CSV파일은 Asset/Dialog/파일이름.csv로 입력해주시고, \n 파일은 project>Asset>Dialog에 저장!")]
     //Assets/Dialog/Nabi_1_1.csv
     public string[] filePath; // CSV 파일 경로
@@ -14,7 +15,13 @@ public class DialogManager : MonoBehaviour
     // 대화 데이터를 저장할 리스트
     public List<List<Dialog>> dialogs = new List<List<Dialog>>();
 
-    
+
+    [Header("캐릭터 모델링")]
+    public GameObject[] char_model;
+    private Animator[] model_animator;
+    public string[] state_name;
+
+
 
 
     [Header("Dialog UI Text")]
@@ -50,7 +57,7 @@ public class DialogManager : MonoBehaviour
 
     private void Awake()
     {
-        for(current_scene_page = 0; current_scene_page<filePath.Length; current_scene_page++)
+        for (current_scene_page = 0; current_scene_page < filePath.Length; current_scene_page++)
         {
             LoadDialogsFromCSV();
         }
@@ -58,7 +65,10 @@ public class DialogManager : MonoBehaviour
 
     void Start()
     {
-        current_scene_page = 0;
+        
+        //current_scene_page = 10;
+        //currentDialogIndex = save_load_Data.Instance.play_data.cur_progress;
+        save_load_Data.Instance.load();
         currentDialogIndex = 0;
         Makingbutton.SetActive(false);
         //LoadDialogsFromCSV();
@@ -71,6 +81,22 @@ public class DialogManager : MonoBehaviour
             uI_Controller.make_drink_objs[i].SetActive(Mathf.FloorToInt(DialogManager.current_scene_page / 2) == i);
         }
 
+        for(int i = 0; i<char_model.Length; i++)
+        {
+            char_model[i].SetActive(false);
+        }
+
+        current_scene_page = save_load_Data.Instance.play_data.cur_progress;
+
+        if(current_scene_page == -1)
+        {
+            current_scene_page = 0;
+        }
+        //current_scene_page = 8;
+
+        uI_Controller.option_slider_set[0].value = save_load_Data.Instance.play_data.BGM_Volume;
+
+        uI_Controller.option_slider_set[1].value = save_load_Data.Instance.play_data.Narr_Volume;
 
 
     }
@@ -120,6 +146,46 @@ public class DialogManager : MonoBehaviour
 
         characterNameText.text = dialog.characterName; // 캐릭터 이름 출력
 
+        for(int i =0; i<char_model.Length; i++)
+        {
+            char_model[i].SetActive(false);
+        }
+
+        switch (dialog.characterName) {
+            case "나비":
+                char_model[0].SetActive(true);
+                //uI_Controller.change_animation_state(model_animator[0], state_name[0]);
+
+                break;
+
+            case "미호":
+                char_model[1].SetActive(true);
+                //uI_Controller.change_animation_state(model_animator[1], state_name[0]);
+
+                break;
+
+            case "이승":
+                char_model[2].SetActive(true);
+                //uI_Controller.change_animation_state(model_animator[2], state_name[0]);
+
+                break;
+
+            case "숨비":
+                char_model[3].SetActive(true);
+                //uI_Controller.change_animation_state(model_animator[3], state_name[0]);
+
+                break;
+
+            case "허 주":
+                char_model[4].SetActive(true);
+                //uI_Controller.change_animation_state(model_animator[4], state_name[0]);
+
+                break;
+        
+        
+        }
+
+
 
         dialogText.text = "";
         Makingbutton.SetActive(false);
@@ -129,6 +195,10 @@ public class DialogManager : MonoBehaviour
 
         //연출관련 함수
         switch (dialog.production) {
+            case "-3":
+                state = dialog.production;
+
+                break;
             case "-2":
                 //making drink
                 state = dialog.production;
@@ -185,7 +255,7 @@ public class DialogManager : MonoBehaviour
 
         }
 
-        string[] production_additional = dialog.production_additional.Split('/');
+        string[] production_additional = dialog.production_additional.Split('%');
 
         Debug.Log(production_additional);
 
@@ -209,8 +279,15 @@ public class DialogManager : MonoBehaviour
             case "1":
                 Debug.Log("image_on");
                 //image
+                if(uI_Controller.image_obj.activeSelf == true)
+                {
+                    break;
+                }
+
                 uI_Controller.image_obj.SetActive(false);
                 uI_Controller.image_obj.GetComponent<Image>().sprite = uI_Controller.image_set[int.Parse(production_additional[1])];
+
+                
 
                 production_controller.call_production(production_controller.Instance.fade_production(0, uI_Controller.image_obj, true, 0.4f));
                 break;
@@ -219,6 +296,19 @@ public class DialogManager : MonoBehaviour
             case "2":
                 Debug.Log("sticker_on");
                 uI_Controller.sticker_set[int.Parse(production_additional[1])].SetActive(true);
+
+                break;
+            case "3":
+                Debug.Log("change_BGM");
+
+                sound_sr.Instance.Play_BGM(production_additional[1], save_load_Data.Instance.play_data.BGM_Volume, true);
+
+                break;
+
+            case "4":
+                Debug.Log("play_effect");
+
+                sound_sr.Instance.Play_Effect(production_additional[1], save_load_Data.Instance.play_data.Narr_Volume, false);
 
                 break;
 
@@ -313,6 +403,7 @@ public class DialogManager : MonoBehaviour
     // 다음 대화로 넘어가는 함수
     public void NextDialog()
     {
+        
         Debug.Log("next_clicked");
         // 대사 출력 중일 때는 클릭이 무시되도록 함
         if (isTyping)
@@ -320,10 +411,13 @@ public class DialogManager : MonoBehaviour
             return;
         }
 
-        if(state == "-2")
+        sound_sr.Instance.Play_Effect("1", save_load_Data.Instance.play_data.Narr_Volume, false);
+
+        if (state == "-2")
         {
             Debug.Log("making_btn");
             Makingbutton.SetActive(true);
+            
 
             return;
         }
@@ -353,6 +447,10 @@ public class DialogManager : MonoBehaviour
             //uI_Controller.dim_dialog(true);
             // 대화 출력 함수 호출
             DisplayDialog();
+        }else if(state == "-3")
+        {
+            //엔딩하기
+            uI_Controller.ending();
         }
 
 
@@ -380,7 +478,10 @@ public class DialogManager : MonoBehaviour
         current_scene_page++;
         currentDialogIndex = 0;
 
-        
+        //for (int i = 0; i < uI_Controller.make_drink_objs.Length; i++)
+        //{
+            //uI_Controller.make_drink_objs[i].SetActive(Mathf.FloorToInt(DialogManager.current_scene_page / 2) == i);
+        //}
 
         //LoadDialogsFromCSV();
 
