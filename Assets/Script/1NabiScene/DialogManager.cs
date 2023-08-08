@@ -76,10 +76,7 @@ public class DialogManager : MonoBehaviour
         uI_Controller = gameObject.GetComponent<UI_Controller>();
         //DisplayDialog();
 
-        for (int i = 0; i < uI_Controller.make_drink_objs.Length; i++)
-        {
-            uI_Controller.make_drink_objs[i].SetActive(Mathf.FloorToInt(DialogManager.current_scene_page / 2) == i);
-        }
+        uI_Controller.envirnment_active();
 
         for(int i = 0; i<char_model.Length; i++)
         {
@@ -288,8 +285,15 @@ public class DialogManager : MonoBehaviour
                 uI_Controller.image_obj.GetComponent<Image>().sprite = uI_Controller.image_set[int.Parse(production_additional[1])];
 
                 
-
-                production_controller.call_production(production_controller.Instance.fade_production(0, uI_Controller.image_obj, true, 0.4f));
+                if(currentDialogIndex != 0 && dialogs[current_scene_page][currentDialogIndex - 1].production_additional.Split('%')[0] == "1")
+                {
+                    uI_Controller.image_obj.SetActive(true);
+                }
+                else
+                {
+                    production_controller.call_production(production_controller.Instance.fade_production(0, uI_Controller.image_obj, true, 0.4f));
+                }
+                
                 break;
 
 
@@ -477,6 +481,8 @@ public class DialogManager : MonoBehaviour
     {
         current_scene_page++;
         currentDialogIndex = 0;
+
+        //uI_Controller.envirnment_active();
 
         //for (int i = 0; i < uI_Controller.make_drink_objs.Length; i++)
         //{

@@ -167,20 +167,9 @@ public class UI_Controller : MonoBehaviour
         //다이얼로그 활성화
         //dialogManager.currentDialogIndex = 0;
 
-        
 
-        for (int i = 0; i < make_drink_objs.Length; i++)
-        {
-            make_drink_objs[i].SetActive(Mathf.FloorToInt(DialogManager.current_scene_page / 2) == i);
-            if(Mathf.FloorToInt(DialogManager.current_scene_page / 2) == i)
-            {
-                Debug.Log("on @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-            }
-            else
-            {
-                Debug.Log("off @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-            }
-        }
+
+        envirnment_active();
 
 
 
@@ -202,10 +191,7 @@ public class UI_Controller : MonoBehaviour
         sound_sr.Instance.Play_BGM("2", save_load_Data.Instance.play_data.BGM_Volume, false);
 
 
-        for (int i = 0; i<make_drink_objs.Length; i++)
-        {
-            make_drink_objs[i].SetActive(Mathf.FloorToInt(DialogManager.current_scene_page/2) == i);
-        }
+        envirnment_active();
 
         is_drink = true;
         drink_ui_set[0].SetActive(true);
@@ -277,10 +263,7 @@ public class UI_Controller : MonoBehaviour
 
         //smoothCamera.MoveMainScene();
 
-        for (int i = 0; i < make_drink_objs.Length; i++)
-        {
-            make_drink_objs[i].SetActive(Mathf.FloorToInt(DialogManager.current_scene_page / 2) == i);
-        }
+        envirnment_active_add();
 
         //fade in
         production_controller.call_production(production_controller.Instance.fade_production(0,dim.gameObject, true, 0.7f));
@@ -310,10 +293,7 @@ public class UI_Controller : MonoBehaviour
         //DialogManager.current_scene_page++;
         //DialogManager.currentDialogIndex = 0;
 
-        for (int i = 0; i < make_drink_objs.Length; i++)
-        {
-            make_drink_objs[i].SetActive(Mathf.FloorToInt(DialogManager.current_scene_page + 1 / 2 ) == i);
-        }
+        envirnment_active_add();
 
 
 
@@ -520,6 +500,52 @@ public class UI_Controller : MonoBehaviour
             default:
 
                 break;
+        }
+    }
+
+    public void envirnment_active()
+    {
+        for (int i = 0; i < make_drink_objs.Length; i++)
+        {
+            make_drink_objs[i].SetActive(Mathf.FloorToInt(DialogManager.current_scene_page / 2) == i);
+
+            if (make_drink_objs[i].activeSelf == true && make_drink_objs[i].transform.childCount >=2)
+            {
+                if (Mathf.FloorToInt(DialogManager.current_scene_page % 2) == 0)
+                {
+                    make_drink_objs[i].transform.GetChild(0).gameObject.SetActive(true);
+                    make_drink_objs[i].transform.GetChild(1).gameObject.SetActive(false);
+                }
+                else if (Mathf.FloorToInt(DialogManager.current_scene_page % 2) == 1)
+                {
+                    make_drink_objs[i].transform.GetChild(0).gameObject.SetActive(false);
+                    make_drink_objs[i].transform.GetChild(1).gameObject.SetActive(true);
+                }
+
+            }
+        }
+    }
+
+    public void envirnment_active_add()
+    {
+        for (int i = 0; i < make_drink_objs.Length; i++)
+        {
+            make_drink_objs[i].SetActive(Mathf.FloorToInt((DialogManager.current_scene_page + 1) / 2) == i);
+
+            if (make_drink_objs[i].activeSelf == true && make_drink_objs[i].transform.childCount >= 2)
+            {
+                if (Mathf.FloorToInt((DialogManager.current_scene_page + 1) % 2) == 0)
+                {
+                    make_drink_objs[i].transform.GetChild(0).gameObject.SetActive(true);
+                    make_drink_objs[i].transform.GetChild(1).gameObject.SetActive(false);
+                }
+                else if (Mathf.FloorToInt((DialogManager.current_scene_page + 1) % 2) == 1)
+                {
+                    make_drink_objs[i].transform.GetChild(0).gameObject.SetActive(false);
+                    make_drink_objs[i].transform.GetChild(1).gameObject.SetActive(true);
+                }
+
+            }
         }
     }
 
