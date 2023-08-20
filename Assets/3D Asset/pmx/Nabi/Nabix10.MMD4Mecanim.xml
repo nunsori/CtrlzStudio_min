@@ -142,10 +142,13 @@
     <waitProcessExitting>false</waitProcessExitting>
     <pmxAssetPath>Assets/3D Asset/pmx/Nabi/Nabix10.pmx</pmxAssetPath>
     <vmdAssetPathList>
-      <string>Assets/3D Asset/pmx/vmd/01_motion_vmd.vmd</string>
-      <string>Assets/3D Asset/pmx/vmd/02_motion_vmd.vmd</string>
-      <string>Assets/3D Asset/pmx/vmd/03_motion_vmd.vmd</string>
-      <string>Assets/3D Asset/pmx/Nabi/wait_big.vmd</string>
+      <string>Assets/3D Asset/pmx/vmd/wait.vmd</string>
+      <string>Assets/3D Asset/pmx/vmd/nod the head.vmd</string>
+      <string>Assets/3D Asset/pmx/vmd/sigh.vmd</string>
+      <string>Assets/3D Asset/pmx/vmd/read.vmd</string>
+      <string>Assets/3D Asset/pmx/vmd/shake hand.vmd</string>
+      <string>Assets/3D Asset/pmx/vmd/worry.vmd</string>
+      <string>Assets/3D Asset/pmx/vmd/drink.vmd</string>
     </vmdAssetPathList>
     <fbxOutputPath>Assets/3D Asset/pmx/Nabi/Nabix10.fbx</fbxOutputPath>
     <bulletPhysicsVersion>_275</bulletPhysicsVersion>
