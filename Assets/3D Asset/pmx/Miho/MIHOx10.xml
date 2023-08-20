@@ -4,7 +4,7 @@
         <fileType>PMX</fileType>
         <fileVersion>2.000000</fileVersion>
         <modelNameJp>MIHO</modelNameJp>
-        <modelNameEn>aniMEIKO</modelNameEn>
+        <modelNameEn>MIHO</modelNameEn>
         <commentJp>exported&#x20;by&#x20;mmd_tools</commentJp>
         <commentEn>exported&#x20;by&#x20;mmd_tools</commentEn>
         <numVertex>51638</numVertex>
@@ -82,9 +82,9 @@
             </specular>
             <shiness>50.000000</shiness>
             <ambient>
-                <r>0.400000</r>
-                <g>0.400000</g>
-                <b>0.400000</b>
+                <r>0.800000</r>
+                <g>0.800000</g>
+                <b>0.800000</b>
             </ambient>
             <sphereMode>None</sphereMode>
             <toonID>2</toonID>
@@ -94,7 +94,7 @@
                 <b>0.000000</b>
                 <a>1.000000</a>
             </edgeColor>
-            <edgeSize>10.000000</edgeSize>
+            <edgeSize>1.000000</edgeSize>
             <textureID>0</textureID>
             <additionalTextureID>-1</additionalTextureID>
             <toonTextureID>-1</toonTextureID>
@@ -125,9 +125,9 @@
             </specular>
             <shiness>50.000000</shiness>
             <ambient>
-                <r>0.400000</r>
-                <g>0.400000</g>
-                <b>0.400000</b>
+                <r>0.800000</r>
+                <g>0.800000</g>
+                <b>0.800000</b>
             </ambient>
             <sphereMode>None</sphereMode>
             <toonID>2</toonID>
@@ -137,7 +137,7 @@
                 <b>0.000000</b>
                 <a>1.000000</a>
             </edgeColor>
-            <edgeSize>10.000000</edgeSize>
+            <edgeSize>1.000000</edgeSize>
             <textureID>1</textureID>
             <additionalTextureID>-1</additionalTextureID>
             <toonTextureID>-1</toonTextureID>
@@ -168,9 +168,9 @@
             </specular>
             <shiness>50.000000</shiness>
             <ambient>
-                <r>0.400000</r>
-                <g>0.400000</g>
-                <b>0.400000</b>
+                <r>0.800000</r>
+                <g>0.800000</g>
+                <b>0.800000</b>
             </ambient>
             <sphereMode>None</sphereMode>
             <toonID>1</toonID>
@@ -180,7 +180,7 @@
                 <b>0.000000</b>
                 <a>1.000000</a>
             </edgeColor>
-            <edgeSize>10.000000</edgeSize>
+            <edgeSize>1.000000</edgeSize>
             <textureID>2</textureID>
             <additionalTextureID>-1</additionalTextureID>
             <toonTextureID>-1</toonTextureID>
@@ -211,9 +211,9 @@
             </specular>
             <shiness>50.000000</shiness>
             <ambient>
-                <r>0.400000</r>
-                <g>0.400000</g>
-                <b>0.400000</b>
+                <r>0.800000</r>
+                <g>0.800000</g>
+                <b>0.800000</b>
             </ambient>
             <sphereMode>None</sphereMode>
             <toonID>2</toonID>
@@ -223,7 +223,7 @@
                 <b>0.000000</b>
                 <a>1.000000</a>
             </edgeColor>
-            <edgeSize>10.000000</edgeSize>
+            <edgeSize>1.000000</edgeSize>
             <textureID>3</textureID>
             <additionalTextureID>-1</additionalTextureID>
             <toonTextureID>-1</toonTextureID>
@@ -254,9 +254,9 @@
             </specular>
             <shiness>50.000000</shiness>
             <ambient>
-                <r>0.400000</r>
-                <g>0.400000</g>
-                <b>0.400000</b>
+                <r>0.800000</r>
+                <g>0.800000</g>
+                <b>0.800000</b>
             </ambient>
             <sphereMode>None</sphereMode>
             <toonID>2</toonID>
@@ -266,7 +266,7 @@
                 <b>0.000000</b>
                 <a>1.000000</a>
             </edgeColor>
-            <edgeSize>10.000000</edgeSize>
+            <edgeSize>1.000000</edgeSize>
             <textureID>4</textureID>
             <additionalTextureID>-1</additionalTextureID>
             <toonTextureID>-1</toonTextureID>

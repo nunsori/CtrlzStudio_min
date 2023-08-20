@@ -4,23 +4,47 @@ ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
-      74: -7448018044903017556
-    second: CtrlzStudio_min/Assets/3D Asset/pmx/vmd/01_motion_vmd_vmd
+      74: -5464408314885589460
+    second: CtrlzStudio_min/Assets/3D Asset/pmx/vmd/drink_vmd
   - first:
-      74: -4382374502025693318
-    second: CtrlzStudio_min/Assets/3D Asset/pmx/vmd/02_motion_vmd_vmd
+      74: 5344501630119395880
+    second: CtrlzStudio_min/Assets/3D Asset/pmx/vmd/nod the head_vmd
   - first:
-      74: 6613595824841241901
-    second: CtrlzStudio_min/Assets/3D Asset/pmx/vmd/03_motion_vmd_vmd
+      74: 6924986376846165911
+    second: CtrlzStudio_min/Assets/3D Asset/pmx/vmd/read_vmd
   - first:
-      74: 7776294159644694285
-    second: 01_motion_vmd_vmd
+      74: 7921501447599392574
+    second: CtrlzStudio_min/Assets/3D Asset/pmx/vmd/shake hand_vmd
   - first:
-      74: 4692347046542114670
-    second: 02_motion_vmd_vmd
+      74: -7601051800518931905
+    second: CtrlzStudio_min/Assets/3D Asset/pmx/vmd/sigh_vmd
   - first:
-      74: 7522320920324164483
-    second: 03_motion_vmd_vmd
+      74: -7260686395554351243
+    second: CtrlzStudio_min/Assets/3D Asset/pmx/vmd/wait_vmd
+  - first:
+      74: -3582568261221744431
+    second: CtrlzStudio_min/Assets/3D Asset/pmx/vmd/worry_vmd
+  - first:
+      74: -702783052576961092
+    second: drink_vmd
+  - first:
+      74: -8379269440741986772
+    second: nod the head_vmd
+  - first:
+      74: -5983234278870448908
+    second: read_vmd
+  - first:
+      74: -4874251018880909802
+    second: shake hand_vmd
+  - first:
+      74: 5428764816509645463
+    second: sigh_vmd
+  - first:
+      74: -1418114342509899389
+    second: wait_vmd
+  - first:
+      74: 7754856102458704772
+    second: worry_vmd
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -75,11 +99,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: 01_motion_vmd_vmd
-      takeName: CtrlzStudio_min/Assets/3D Asset/pmx/vmd/01_motion_vmd_vmd
+      name: drink_vmd
+      takeName: CtrlzStudio_min/Assets/3D Asset/pmx/vmd/drink_vmd
       internalID: 0
       firstFrame: 0
-      lastFrame: 166
+      lastFrame: 80
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -104,11 +128,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: 02_motion_vmd_vmd
-      takeName: CtrlzStudio_min/Assets/3D Asset/pmx/vmd/02_motion_vmd_vmd
+      name: nod the head_vmd
+      takeName: CtrlzStudio_min/Assets/3D Asset/pmx/vmd/nod the head_vmd
       internalID: 0
       firstFrame: 0
-      lastFrame: 166
+      lastFrame: 80
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -133,11 +157,127 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: 03_motion_vmd_vmd
-      takeName: CtrlzStudio_min/Assets/3D Asset/pmx/vmd/03_motion_vmd_vmd
+      name: read_vmd
+      takeName: CtrlzStudio_min/Assets/3D Asset/pmx/vmd/read_vmd
       internalID: 0
       firstFrame: 0
-      lastFrame: 175
+      lastFrame: 80
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: shake hand_vmd
+      takeName: CtrlzStudio_min/Assets/3D Asset/pmx/vmd/shake hand_vmd
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 80
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: sigh_vmd
+      takeName: CtrlzStudio_min/Assets/3D Asset/pmx/vmd/sigh_vmd
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 80
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: wait_vmd
+      takeName: CtrlzStudio_min/Assets/3D Asset/pmx/vmd/wait_vmd
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 80
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: worry_vmd
+      takeName: CtrlzStudio_min/Assets/3D Asset/pmx/vmd/worry_vmd
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 80
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

@@ -142,10 +142,15 @@
     <waitProcessExitting>false</waitProcessExitting>
     <pmxAssetPath>Assets/3D Asset/pmx/Soombi/Sumbix10.pmx</pmxAssetPath>
     <vmdAssetPathList>
-      <string>Assets/3D Asset/pmx/vmd/02_motion_vmd.vmd</string>
+      <string>Assets/3D Asset/pmx/vmd/wait.vmd</string>
+      <string>Assets/3D Asset/pmx/vmd/drink.vmd</string>
+      <string>Assets/3D Asset/pmx/vmd/nod the head.vmd</string>
+      <string>Assets/3D Asset/pmx/vmd/read.vmd</string>
+      <string>Assets/3D Asset/pmx/vmd/shake hand.vmd</string>
+      <string>Assets/3D Asset/pmx/vmd/sigh.vmd</string>
+      <string>Assets/3D Asset/pmx/vmd/worry.vmd</string>
     </vmdAssetPathList>
-    <fbxOutputPath>Assets/pmx/Lee/Sumbix10.fbx</fbxOutputPath>
-    <fbxAssetPath>Assets/3D Asset/pmx/Soombi/Sumbix10.fbx</fbxAssetPath>
+    <fbxOutputPath>Assets/3D Asset/pmx/Soombi/Sumbix10.fbx</fbxOutputPath>
     <bulletPhysicsVersion>_275</bulletPhysicsVersion>
     <useWineFlag>false</useWineFlag>
     <wine>Manual</wine>
@@ -183,97 +188,5 @@
       <selfShadowEnabled>true</selfShadowEnabled>
       <sphereMapEnabled>true</sphereMapEnabled>
     </materialGlobalProperty>
-    <materialProperyList>
-      <MaterialProperty>
-        <materialName>0.face</materialName>
-        <isVisible>true</isVisible>
-        <isLocked>false</isLocked>
-        <isUIFoldout>false</isUIFoldout>
-        <overrideToonTone>false</overrideToonTone>
-        <overrideShadowLum>false</overrideShadowLum>
-        <overrideTess>false</overrideTess>
-        <tessEnabled>false</tessEnabled>
-        <transparencyCache>Disabled</transparencyCache>
-      </MaterialProperty>
-      <MaterialProperty>
-        <materialName>1.skin</materialName>
-        <isVisible>true</isVisible>
-        <isLocked>false</isLocked>
-        <isUIFoldout>false</isUIFoldout>
-        <overrideToonTone>false</overrideToonTone>
-        <overrideShadowLum>false</overrideShadowLum>
-        <overrideTess>false</overrideTess>
-        <tessEnabled>false</tessEnabled>
-        <transparencyCache>Disabled</transparencyCache>
-      </MaterialProperty>
-      <MaterialProperty>
-        <materialName>2.cloth</materialName>
-        <isVisible>true</isVisible>
-        <isLocked>false</isLocked>
-        <isUIFoldout>false</isUIFoldout>
-        <overrideToonTone>false</overrideToonTone>
-        <overrideShadowLum>false</overrideShadowLum>
-        <overrideTess>false</overrideTess>
-        <tessEnabled>false</tessEnabled>
-        <transparencyCache>Disabled</transparencyCache>
-      </MaterialProperty>
-      <MaterialProperty>
-        <materialName>3.hair</materialName>
-        <isVisible>true</isVisible>
-        <isLocked>false</isLocked>
-        <isUIFoldout>false</isUIFoldout>
-        <overrideToonTone>false</overrideToonTone>
-        <overrideShadowLum>false</overrideShadowLum>
-        <overrideTess>false</overrideTess>
-        <tessEnabled>false</tessEnabled>
-        <transparencyCache>Disabled</transparencyCache>
-      </MaterialProperty>
-      <MaterialProperty>
-        <materialName>4.black</materialName>
-        <isVisible>true</isVisible>
-        <isLocked>false</isLocked>
-        <isUIFoldout>false</isUIFoldout>
-        <overrideToonTone>false</overrideToonTone>
-        <overrideShadowLum>false</overrideShadowLum>
-        <overrideTess>false</overrideTess>
-        <tessEnabled>false</tessEnabled>
-        <transparencyCache>Disabled</transparencyCache>
-      </MaterialProperty>
-    </materialProperyList>
-    <materialBlockPropertyList>
-      <MaterialBlockProperty>
-        <materialNames>
-          <string>0.face</string>
-          <string>1.skin</string>
-          <string>2.cloth</string>
-          <string>3.hair</string>
-          <string>4.black</string>
-        </materialNames>
-        <isUIFoldout>true</isUIFoldout>
-        <baseColor>
-          <r>1</r>
-          <g>1</g>
-          <b>1</b>
-          <a>1</a>
-        </baseColor>
-        <emissionColor>
-          <r>0</r>
-          <g>0</g>
-          <b>0</b>
-          <a>0</a>
-        </emissionColor>
-        <emissionPower>1</emissionPower>
-        <standardBRDF>Specular</standardBRDF>
-        <standardSpecularColor>
-          <r>0</r>
-          <g>0</g>
-          <b>0</b>
-          <a>0</a>
-        </standardSpecularColor>
-        <standardMetallicGlossiness>0</standardMetallicGlossiness>
-        <standardSpecularGlossiness>0</standardSpecularGlossiness>
-        <standardMetallic>0</standardMetallic>
-      </MaterialBlockProperty>
-    </materialBlockPropertyList>
   </mmd4MecanimProperty>
 </PMX2FBXConfig>
