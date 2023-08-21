@@ -14,6 +14,8 @@ public class character_controller : MonoBehaviour
     [Header("캐릭터 Skinned Mesh Renderer에서 캐릭터 얼굴부분에 해당하는 material의 인덱스")]
     public int character_face_material_index = 0;
 
+    public static string[] char_motion_name = { "wait_vmd", "drink_vmd", "nod the head_vmd", "read_vmd", "shake hand_vmd", "sigh_vmd", "worry_vmd", "optimization" };
+
     // Start is called before the first frame update
     void Start()
     {

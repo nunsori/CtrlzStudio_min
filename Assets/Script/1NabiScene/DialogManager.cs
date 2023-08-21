@@ -20,6 +20,7 @@ public class DialogManager : MonoBehaviour
     public GameObject[] char_model;
     private Animator[] model_animator;
     public string[] state_name;
+    public character_controller[] character_Controller;
 
 
 
@@ -89,6 +90,8 @@ public class DialogManager : MonoBehaviour
         {
             current_scene_page = 0;
         }
+
+
         //current_scene_page = 8;
 
         uI_Controller.option_slider_set[0].value = save_load_Data.Instance.play_data.BGM_Volume;
@@ -140,43 +143,48 @@ public class DialogManager : MonoBehaviour
             characterNameText = characterNameText_list[0];
             dialogText = dialogText_list[0];
         }
-
-        characterNameText.text = dialog.characterName; // 캐릭터 이름 출력
+        Debug.Log(dialog.characterName.Split('%')[0]);
+        characterNameText.text = dialog.characterName.Split('%')[0]; // 캐릭터 이름 출력
 
         for(int i =0; i<char_model.Length; i++)
         {
             char_model[i].SetActive(false);
         }
 
-        switch (dialog.characterName) {
+        switch (dialog.characterName.Split('%')[0]) {
             case "나비":
                 char_model[0].SetActive(true);
                 //uI_Controller.change_animation_state(model_animator[0], state_name[0]);
-
+                character_Controller[0].change_charcter_face(int.Parse(dialog.characterName.Split('%')[1]));
+                character_Controller[0].change_motion(character_controller.char_motion_name[int.Parse(dialog.characterName.Split('%')[2])]);
                 break;
 
             case "미호":
                 char_model[1].SetActive(true);
                 //uI_Controller.change_animation_state(model_animator[1], state_name[0]);
-
+                character_Controller[1].change_charcter_face(int.Parse(dialog.characterName.Split('%')[1]));
+                character_Controller[1].change_motion(character_controller.char_motion_name[int.Parse(dialog.characterName.Split('%')[2])]);
                 break;
 
             case "이 승":
                 char_model[2].SetActive(true);
                 //uI_Controller.change_animation_state(model_animator[2], state_name[0]);
-
+                character_Controller[2].change_charcter_face(int.Parse(dialog.characterName.Split('%')[1]));
+                character_Controller[2].change_motion(character_controller.char_motion_name[int.Parse(dialog.characterName.Split('%')[2])]);
                 break;
 
             case "숨비":
                 char_model[3].SetActive(true);
                 //uI_Controller.change_animation_state(model_animator[3], state_name[0]);
-
+                character_Controller[3].change_charcter_face(int.Parse(dialog.characterName.Split('%')[1]));
+                character_Controller[3].change_motion(character_controller.char_motion_name[int.Parse(dialog.characterName.Split('%')[2])]);
                 break;
 
             case "허 주":
                 char_model[4].SetActive(true);
                 //uI_Controller.change_animation_state(model_animator[4], state_name[0]);
-
+                character_Controller[4].change_charcter_face(int.Parse(dialog.characterName.Split('%')[1]));
+                character_Controller[4].change_motion(character_controller.char_motion_name[int.Parse(dialog.characterName.Split('%')[2])]);
                 break;
         
         
@@ -336,7 +344,7 @@ public class DialogManager : MonoBehaviour
         // 캐릭터이름 칸이 비어있어도 출력되는 함수
         if (dialog.characterName != "")
         { // 캐릭터 이름이 비어있지 않으면 캐릭터 이름 출력
-            characterNameText.text = dialog.characterName;
+            characterNameText.text = dialog.characterName.Split('%')[0];
         }
         else
         { // 캐릭터 이름이 비어있으면 이전 캐릭터 이름과 같은 이름으로 출력
