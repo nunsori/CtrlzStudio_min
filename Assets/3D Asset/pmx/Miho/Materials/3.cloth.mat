@@ -173,7 +173,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _1st2nd_Shades_Feather: 0.0001
-    - _1st_ShadeColor_Feather: 0.31
+    - _1st_ShadeColor_Feather: 0.093
     - _1st_ShadeColor_Step: 0.65
     - _2nd_ShadeColor_Feather: 0.0001
     - _2nd_ShadeColor_Step: 0.02
@@ -191,7 +191,7 @@ Material:
     - _Ap_RimLight_Power: 0.1
     - _AutoRenderQueue: 1
     - _BaseColor_Step: 0.65
-    - _BaseShade_Feather: 0.31
+    - _BaseShade_Feather: 0.093
     - _Base_Speed: 0
     - _Blend: 0
     - _BlurLevelMatcap: 0
@@ -328,8 +328,8 @@ Material:
     - _Ambient: {r: 0.8, g: 0.8, b: 0.8, a: 0}
     - _AngelRing_Color: {r: 1, g: 1, b: 1, a: 1}
     - _Ap_RimLightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseColor: {r: 1, g: 0.7783019, b: 0.7783019, a: 1}
+    - _Color: {r: 1, g: 0.7783019, b: 0.7783019, a: 1}
     - _ColorShift: {r: 0, g: 0, b: 0, a: 1}
     - _EdgeColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
