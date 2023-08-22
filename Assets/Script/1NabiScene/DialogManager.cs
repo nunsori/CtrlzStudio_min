@@ -91,6 +91,8 @@ public class DialogManager : MonoBehaviour
             current_scene_page = 0;
         }
 
+        uI_Controller.ui_update();
+
 
         //current_scene_page = 8;
 
@@ -490,6 +492,8 @@ public class DialogManager : MonoBehaviour
         current_scene_page++;
         currentDialogIndex = 0;
 
+        
+
         //uI_Controller.envirnment_active();
 
         //for (int i = 0; i < uI_Controller.make_drink_objs.Length; i++)
@@ -506,6 +510,13 @@ public class DialogManager : MonoBehaviour
     {
         dialogText.text = "";
         characterNameText.text = "";
+
+        for (int i = 0; i < char_model.Length; i++)
+        {
+            char_model[i].SetActive(false);
+        }
+
+        uI_Controller.ui_update();
     }
 }
 

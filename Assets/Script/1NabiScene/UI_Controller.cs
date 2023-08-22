@@ -62,6 +62,15 @@ public class UI_Controller : MonoBehaviour
     //0 - bgm , 1 - effect
     public Slider[] option_slider_set;
 
+    public Image day_img;
+    public Sprite[] day_img_list;
+    public Image menu_img;
+    public Sprite[] menu_img_list;
+    public Image complete_text_img;
+    public Sprite[] complete_text_img_list;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -505,9 +514,16 @@ public class UI_Controller : MonoBehaviour
 
     public void envirnment_active()
     {
+        //day_img.sprite = day_img_list[Mathf.FloorToInt(DialogManager.current_scene_page / 2)];
+        //complete_text_img.sprite = complete_text_img_list[Mathf.FloorToInt(DialogManager.current_scene_page / 2)];
+        //menu_img.sprite = menu_img_list[Mathf.FloorToInt(DialogManager.current_scene_page / 2)];
+
+        
+
         for (int i = 0; i < make_drink_objs.Length; i++)
         {
             make_drink_objs[i].SetActive(Mathf.FloorToInt(DialogManager.current_scene_page / 2) == i);
+
 
             if (make_drink_objs[i].activeSelf == true && make_drink_objs[i].transform.childCount >=2)
             {
@@ -528,6 +544,19 @@ public class UI_Controller : MonoBehaviour
 
     public void envirnment_active_add()
     {
+        /*
+        if(Mathf.FloorToInt((DialogManager.current_scene_page + 1) / 2) < 6)
+        {
+            if(Mathf.FloorToInt((DialogManager.current_scene_page + 1) / 2) < 5)
+            {
+                complete_text_img.sprite = complete_text_img_list[Mathf.FloorToInt((DialogManager.current_scene_page + 1) / 2)];
+                menu_img.sprite = menu_img_list[Mathf.FloorToInt((DialogManager.current_scene_page + 1) / 2)];
+            }
+            day_img.sprite = day_img_list[Mathf.FloorToInt((DialogManager.current_scene_page + 1) / 2)];
+            
+        }*/
+        
+
         for (int i = 0; i < make_drink_objs.Length; i++)
         {
             make_drink_objs[i].SetActive(Mathf.FloorToInt((DialogManager.current_scene_page + 1) / 2) == i);
@@ -546,6 +575,20 @@ public class UI_Controller : MonoBehaviour
                 }
 
             }
+        }
+    }
+
+    public void ui_update()
+    {
+        if (Mathf.FloorToInt((DialogManager.current_scene_page + 1) / 2) < 6)
+        {
+            if (Mathf.FloorToInt((DialogManager.current_scene_page + 1) / 2) < 5)
+            {
+                complete_text_img.sprite = complete_text_img_list[Mathf.FloorToInt((DialogManager.current_scene_page + 1) / 2)];
+                menu_img.sprite = menu_img_list[Mathf.FloorToInt((DialogManager.current_scene_page + 1) / 2)];
+            }
+            day_img.sprite = day_img_list[Mathf.FloorToInt((DialogManager.current_scene_page + 1) / 2)];
+
         }
     }
 
