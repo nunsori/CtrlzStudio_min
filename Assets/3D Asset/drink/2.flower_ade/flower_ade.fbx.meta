@@ -4,12 +4,12 @@ ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
-      74: -7145920864411528567
-    second: Circle.006|Circle.006Action
+      74: -1494294581089277991
+    second: drink|Circle.006Action
   externalObjects: {}
   materials:
-    materialImportMode: 2
-    materialName: 1
+    materialImportMode: 1
+    materialName: 0
     materialSearch: 1
     materialLocation: 0
   animations:
