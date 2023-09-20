@@ -277,8 +277,8 @@ Material:
     - _Tweak_transparency: 0
     - _UVSec: 0
     - _Unlit_Intensity: 1
-    - _Use_1stAs2nd: 0
-    - _Use_BaseAs1st: 0
+    - _Use_1stAs2nd: 1
+    - _Use_BaseAs1st: 1
     - _WorkflowMode: 1
     - _ZOverDrawMode: 0
     - _ZWrite: 1
@@ -293,8 +293,8 @@ Material:
     - _2nd_ShadeColor: {r: 1, g: 1, b: 1, a: 1}
     - _AngelRing_Color: {r: 1, g: 1, b: 1, a: 1}
     - _Ap_RimLightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _BaseColor: {r: 0.033102363, g: 0.006469495, b: 0.0009856912, a: 1}
-    - _Color: {r: 0.033102363, g: 0.006469495, b: 0.0009856912, a: 1}
+    - _BaseColor: {r: 0.31132078, g: 0.15602753, b: 0.1042631, a: 1}
+    - _Color: {r: 0.31132078, g: 0.15602753, b: 0.1042631, a: 1}
     - _ColorShift: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Emissive_Color: {r: 0, g: 0, b: 0, a: 1}
