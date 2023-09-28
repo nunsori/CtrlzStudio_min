@@ -11,6 +11,7 @@ public class Click : MonoBehaviour
     public GameObject NewGameImage;
     public GameObject LoadImage;
     public GameObject OptionImage;
+    public GameObject CreditImage;
 
     public Slider bgm_slider;
     public Slider narr_slider;
@@ -24,7 +25,7 @@ public class Click : MonoBehaviour
         NewGameImage.SetActive(false);
         LoadImage.SetActive(false);
         OptionImage.SetActive(false);
-
+        CreditImage.SetActive(false);
         
         save_load_Data.Instance.load();
 
@@ -76,6 +77,12 @@ public class Click : MonoBehaviour
         //OptionImage.SetActive(true);
     }
 
+    public void Credit()
+    {
+        production_controller.call_production(production_controller.Instance.fade_production(0, start_game, false, 0.2f));
+        production_controller.call_production(production_controller.Instance.fade_production(0.2f, CreditImage, true, 0.2f));
+    }
+
 
 
     //Exit
@@ -94,6 +101,12 @@ public class Click : MonoBehaviour
         production_controller.call_production(production_controller.Instance.fade_production(0, LoadImage, false, 0.2f));
         production_controller.call_production(production_controller.Instance.fade_production(0.2f, start_game, true, 0.2f));
         //LoadImage.SetActive(false);
+    }
+
+    public void CreditBack()
+    {
+        production_controller.call_production(production_controller.Instance.fade_production(0, CreditImage, false, 0.2f));
+        production_controller.call_production(production_controller.Instance.fade_production(0.2f, start_game, true, 0.2f));
     }
 
     //Option 뒤로가기
