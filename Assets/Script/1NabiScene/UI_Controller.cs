@@ -69,6 +69,12 @@ public class UI_Controller : MonoBehaviour
     public Image complete_text_img;
     public Sprite[] complete_text_img_list;
 
+    [Header("특수 랜더경우")]
+    public MeshRenderer nabi_cup;
+    public Material[] nabi_cup_mat;
+    public MeshRenderer soombi_cup;
+    public Material[] soombi_cup_mat;
+
 
 
     // Start is called before the first frame update
@@ -134,17 +140,43 @@ public class UI_Controller : MonoBehaviour
             if (is_progress)
             {
                 drink_animator[Mathf.FloorToInt(DialogManager.current_scene_page / 2)].speed = 1f;
-                change_animation_state(drink_animator[Mathf.FloorToInt(DialogManager.current_scene_page / 2)], "animated_drink|CircleAction");
-                
+                change_animation_state(drink_animator[Mathf.FloorToInt(DialogManager.current_scene_page / 2)], "animated_drink");
+                if(Mathf.FloorToInt(DialogManager.current_scene_page / 2) == 0)
+                {
+                    nabi_cup.material = nabi_cup_mat[1];
+                }else if(Mathf.FloorToInt(DialogManager.current_scene_page / 2) == 3)
+                {
+                    soombi_cup.material = soombi_cup_mat[1];
+                }
+
+
             }
             else
             {
                 drink_animator[Mathf.FloorToInt(DialogManager.current_scene_page / 2)].speed = 0f;
-                
+
+                if (Mathf.FloorToInt(DialogManager.current_scene_page / 2) == 0)
+                {
+                    nabi_cup.material = nabi_cup_mat[0];
+                }
+                else if (Mathf.FloorToInt(DialogManager.current_scene_page / 2) == 3)
+                {
+                    soombi_cup.material = soombi_cup_mat[0];
+                }
             }
 
             if(drink_animator[Mathf.FloorToInt(DialogManager.current_scene_page / 2)].GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
             {
+
+                if (Mathf.FloorToInt(DialogManager.current_scene_page / 2) == 0)
+                {
+                    nabi_cup.material = nabi_cup_mat[0];
+                }
+                else if (Mathf.FloorToInt(DialogManager.current_scene_page / 2) == 3)
+                {
+                    soombi_cup.material = soombi_cup_mat[0];
+                }
+
                 is_progress = false;
                 is_drink = false;
                 Debug.Log("진행완료");
@@ -211,7 +243,7 @@ public class UI_Controller : MonoBehaviour
 
 
         drink_animator[Mathf.FloorToInt(DialogManager.current_scene_page / 2)].speed = 0f;
-        drink_animator[Mathf.FloorToInt(DialogManager.current_scene_page/2)].Play("animated_drink|CircleAction");
+        drink_animator[Mathf.FloorToInt(DialogManager.current_scene_page/2)].Play("animated_drink");
         
         drink_animator[Mathf.FloorToInt(DialogManager.current_scene_page / 2)].Rebind();
 
@@ -356,6 +388,7 @@ public class UI_Controller : MonoBehaviour
 
         //이후 연출추가
         production_controller.call_production(production_controller.Instance.fade_production(0, finish_title, true, 1.5f));
+        change_animation_state(drink_animator[Mathf.FloorToInt(DialogManager.current_scene_page / 2)], "fin");
 
         production_controller.call_production(active_delay(2f, drink_ui_set[1], true));
 
