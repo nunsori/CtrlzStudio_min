@@ -121,6 +121,8 @@ public class DialogManager : MonoBehaviour
     public void DisplayDialog()
     {
         //Debug.Log("dis@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+
+
         //if (currentDialogIndex >= dialogs[current_scene_page].Count) // 대화가 끝났으면 함수를 종료, 버튼 활성화
         //{
             //Makingbutton.SetActive(true);
