@@ -35,6 +35,8 @@ public class Option : MonoBehaviour
         {
             change_animation_state(animator, animation_clip_name[2]);
         }
+
+        Debug.Log("btn_clicked");
     }
 
     private void PlayAnimation(AnimationClip animationClip)

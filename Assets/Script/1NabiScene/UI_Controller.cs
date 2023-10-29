@@ -76,12 +76,13 @@ public class UI_Controller : MonoBehaviour
     public Material[] soombi_cup_mat;
 
 
+    public delegate void temp_fuc_ui();
 
     // Start is called before the first frame update
     void Start()
     {
-        
 
+        
         //초기 ui active 설정
         ui_objs[0].SetActive(true);
         ui_objs[1].SetActive(false);
@@ -231,7 +232,8 @@ public class UI_Controller : MonoBehaviour
         sound_sr.Instance.Play_Effect("2", save_load_Data.Instance.play_data.Narr_Volume, false);
         sound_sr.Instance.Play_BGM("2", save_load_Data.Instance.play_data.BGM_Volume, false);
 
-
+        //call_function_delay_ui(0.8f, new UI_Controller.temp_fuc_ui(envirnment_active));
+        //call_function_delay_ui(1f, envirnment_active);
         envirnment_active();
 
         is_drink = true;
@@ -303,8 +305,9 @@ public class UI_Controller : MonoBehaviour
         //dialogManager.next_page_dialog();
 
         //smoothCamera.MoveMainScene();
-
-        envirnment_active_add();
+        //call_function_delay_ui(0.8f, new UI_Controller.temp_fuc_ui(envirnment_active_add));
+        production_controller.call_production(call_function_delay_ui(1.2f, new UI_Controller.temp_fuc_ui(envirnment_active_add)));
+        //envirnment_active_add();
 
         //fade in
         production_controller.call_production(production_controller.Instance.fade_production(0,dim.gameObject, true, 0.7f));
@@ -334,7 +337,10 @@ public class UI_Controller : MonoBehaviour
         //DialogManager.current_scene_page++;
         //DialogManager.currentDialogIndex = 0;
 
-        envirnment_active_add();
+        //call_function_delay_ui(0.8f, new UI_Controller.temp_fuc_ui(envirnment_active_add));
+        production_controller.call_production(call_function_delay_ui(1.2f, new UI_Controller.temp_fuc_ui(envirnment_active_add)));
+        //call_function_delay_ui(1f, envirnment_active_add);
+        //envirnment_active_add();
 
 
 
@@ -404,6 +410,13 @@ public class UI_Controller : MonoBehaviour
 
 
     IEnumerator call_function_delay(float delay_, DialogManager.temp_fun function)
+    {
+        yield return new WaitForSeconds(delay_);
+
+        function();
+    }
+
+    IEnumerator call_function_delay_ui(float delay_, temp_fuc_ui function)
     {
         yield return new WaitForSeconds(delay_);
 
@@ -621,6 +634,22 @@ public class UI_Controller : MonoBehaviour
                 menu_img.sprite = menu_img_list[Mathf.FloorToInt((DialogManager.current_scene_page + 1) / 2)];
             }
             day_img.sprite = day_img_list[Mathf.FloorToInt((DialogManager.current_scene_page + 1) / 2)];
+
+        }
+    }
+
+
+
+    public void ui_update_minus()
+    {
+        if (Mathf.FloorToInt((DialogManager.current_scene_page) / 2) < 6)
+        {
+            if (Mathf.FloorToInt((DialogManager.current_scene_page) / 2) < 5)
+            {
+                complete_text_img.sprite = complete_text_img_list[Mathf.FloorToInt((DialogManager.current_scene_page) / 2)];
+                menu_img.sprite = menu_img_list[Mathf.FloorToInt((DialogManager.current_scene_page) / 2)];
+            }
+            day_img.sprite = day_img_list[Mathf.FloorToInt((DialogManager.current_scene_page) / 2)];
 
         }
     }

@@ -91,7 +91,8 @@ public class DialogManager : MonoBehaviour
             current_scene_page = 0;
         }
 
-        uI_Controller.ui_update();
+        //uI_Controller.ui_update();
+        uI_Controller.ui_update_minus();
 
 
         //current_scene_page = 8;
@@ -294,10 +295,11 @@ public class DialogManager : MonoBehaviour
                 }
 
                 uI_Controller.image_obj.SetActive(false);
-                uI_Controller.image_obj.GetComponent<Image>().sprite = uI_Controller.image_set[int.Parse(production_additional[1])];
+                uI_Controller.image_obj.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = uI_Controller.image_set[int.Parse(production_additional[1])];
 
                 
-                if(currentDialogIndex != 0 && dialogs[current_scene_page][currentDialogIndex - 1].production_additional.Split('%')[0] == "1")
+                if(currentDialogIndex != 0 && dialogs[current_scene_page][currentDialogIndex - 1].production_additional.Split('%')[0] == "1"
+                || currentDialogIndex != 0 && dialogs[current_scene_page][currentDialogIndex - 1].production_additional.Split('%')[0] == "5")
                 {
                     uI_Controller.image_obj.SetActive(true);
                 }
@@ -325,6 +327,45 @@ public class DialogManager : MonoBehaviour
                 Debug.Log("play_effect");
 
                 sound_sr.Instance.Play_Effect(production_additional[1], save_load_Data.Instance.play_data.Narr_Volume, false);
+
+                break;
+
+            case "5":
+                Debug.Log("image+effect");
+
+                // 5%(이미지 인덱스)%(효과음 인덱스)
+
+                //image
+                if (uI_Controller.image_obj.activeSelf == true)
+                {
+                    break;
+                }
+
+                uI_Controller.image_obj.SetActive(false);
+                uI_Controller.image_obj.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = uI_Controller.image_set[int.Parse(production_additional[1])];
+
+
+                if (currentDialogIndex != 0 && dialogs[current_scene_page][currentDialogIndex - 1].production_additional.Split('%')[0] == "1"
+                || currentDialogIndex != 0 && dialogs[current_scene_page][currentDialogIndex - 1].production_additional.Split('%')[0] == "5")
+                {
+                    uI_Controller.image_obj.SetActive(true);
+                }
+                else
+                {
+                    production_controller.call_production(production_controller.Instance.fade_production(0, uI_Controller.image_obj, true, 0.4f));
+                }
+
+                sound_sr.Instance.Play_Effect(production_additional[2], save_load_Data.Instance.play_data.Narr_Volume, false);
+
+                break;
+
+
+            case "6":
+                //스티커 + 효과음
+                uI_Controller.sticker_set[int.Parse(production_additional[1])].SetActive(true);
+                sound_sr.Instance.Play_Effect(production_additional[2], save_load_Data.Instance.play_data.Narr_Volume, false);
+
+
 
                 break;
 

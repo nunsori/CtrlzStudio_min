@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class SmoothCamera : MonoBehaviour
 {
@@ -16,6 +17,12 @@ public class SmoothCamera : MonoBehaviour
     public delegate void temp_fuc();
 
     private float t = 0f;
+
+
+    [Header("volume_profile")]
+    public Volume volume;
+    public VolumeProfile[] volume_profile;
+
 
     private void Awake()
     {
@@ -38,6 +45,8 @@ public class SmoothCamera : MonoBehaviour
     //음료씬으로 넘어가기
     public void MoveCupScene()
     {
+        volume.profile = volume_profile[1];
+
         // 이동할 위치를 확인하고 준비가 되면 카메라 이동
         myCamera.transform.position = Camera2.position;
         myCamera.transform.rotation = Camera2.rotation;
@@ -48,6 +57,8 @@ public class SmoothCamera : MonoBehaviour
 
     public void MoveMainScene()
     {
+        volume.profile = volume_profile[0];
+
         myCamera.transform.position = camera_init_pos;
         myCamera.transform.rotation = camera_init_rotation;
 

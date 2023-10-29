@@ -17,6 +17,8 @@ public class Click : MonoBehaviour
     public Slider narr_slider;
 
     public Text[] load_game_text;
+
+    public string empty_data_name = "null";
    
 
     void Start()
@@ -37,7 +39,7 @@ public class Click : MonoBehaviour
         {
             if (save_load_Data.Instance.play_data.progress_slot[i] == -1)
             {
-                load_game_text[i].text = "null";
+                load_game_text[i].text = empty_data_name;
             }
             else
             {
