@@ -106,7 +106,7 @@ public class DialogManager : MonoBehaviour
 
     void LoadDialogsFromCSV()
     {
-        string[] lines = File.ReadAllLines(filePath[current_scene_page]); // CSV 파일 읽기
+        string[] lines = File.ReadAllLines(filePath[current_scene_page],System.Text.Encoding.Default); // CSV 파일 읽기
 
         for (int i = 1; i < lines.Length; i++) // 첫 번째 줄은 헤더이므로 무시하고 두 번째 줄부터 데이터를 읽음
         {
