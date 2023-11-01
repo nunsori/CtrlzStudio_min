@@ -133,7 +133,13 @@ public class DialogManager : MonoBehaviour
 
         
 
-        
+        if(currentDialogIndex == 0)
+        {
+            uI_Controller.change_animation_state(uI_Controller.ui_objs[3].GetComponent<Animator>(), "day_init");
+        }else
+        {
+            uI_Controller.change_animation_state(uI_Controller.ui_objs[3].GetComponent<Animator>(), "day_motion");
+        }
 
 
         Dialog dialog = dialogs[current_scene_page][currentDialogIndex]; // 출력할 대화 가져오기
@@ -299,7 +305,8 @@ public class DialogManager : MonoBehaviour
 
                 
                 if(currentDialogIndex != 0 && dialogs[current_scene_page][currentDialogIndex - 1].production_additional.Split('%')[0] == "1"
-                || currentDialogIndex != 0 && dialogs[current_scene_page][currentDialogIndex - 1].production_additional.Split('%')[0] == "5")
+                || currentDialogIndex != 0 && dialogs[current_scene_page][currentDialogIndex - 1].production_additional.Split('%')[0] == "5"
+                || currentDialogIndex != 0 && dialogs[current_scene_page][currentDialogIndex - 1].production_additional.Split('%')[0] == "7")
                 {
                     uI_Controller.image_obj.SetActive(true);
                 }
@@ -346,7 +353,8 @@ public class DialogManager : MonoBehaviour
 
 
                 if (currentDialogIndex != 0 && dialogs[current_scene_page][currentDialogIndex - 1].production_additional.Split('%')[0] == "1"
-                || currentDialogIndex != 0 && dialogs[current_scene_page][currentDialogIndex - 1].production_additional.Split('%')[0] == "5")
+                || currentDialogIndex != 0 && dialogs[current_scene_page][currentDialogIndex - 1].production_additional.Split('%')[0] == "5"
+                || currentDialogIndex != 0 && dialogs[current_scene_page][currentDialogIndex - 1].production_additional.Split('%')[0] == "7")
                 {
                     uI_Controller.image_obj.SetActive(true);
                 }
@@ -364,6 +372,39 @@ public class DialogManager : MonoBehaviour
                 //스티커 + 효과음
                 uI_Controller.sticker_set[int.Parse(production_additional[1])].SetActive(true);
                 sound_sr.Instance.Play_Effect(production_additional[2], save_load_Data.Instance.play_data.Narr_Volume, false);
+
+
+
+                break;
+
+            case "7":
+                //bgm + 이미지
+                Debug.Log("change_BGM");
+
+                sound_sr.Instance.Play_BGM(production_additional[1], save_load_Data.Instance.play_data.BGM_Volume, true);
+
+
+                Debug.Log("image_on");
+                //image
+                if (uI_Controller.image_obj.activeSelf == true)
+                {
+                    break;
+                }
+
+                uI_Controller.image_obj.SetActive(false);
+                uI_Controller.image_obj.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = uI_Controller.image_set[int.Parse(production_additional[2])];
+
+
+                if (currentDialogIndex != 0 && dialogs[current_scene_page][currentDialogIndex - 1].production_additional.Split('%')[0] == "1"
+                || currentDialogIndex != 0 && dialogs[current_scene_page][currentDialogIndex - 1].production_additional.Split('%')[0] == "5"
+                || currentDialogIndex != 0 && dialogs[current_scene_page][currentDialogIndex - 1].production_additional.Split('%')[0] == "7")
+                {
+                    uI_Controller.image_obj.SetActive(true);
+                }
+                else
+                {
+                    production_controller.call_production(production_controller.Instance.fade_production(0, uI_Controller.image_obj, true, 0.4f));
+                }
 
 
 

@@ -19,6 +19,8 @@ public class Click : MonoBehaviour
     public Text[] load_game_text;
 
     public string empty_data_name = "null";
+
+    private string[] char_list = new string[6] { "나비", "미호", "이 승", "숨비", "허 주", "나비" };
    
 
     void Start()
@@ -43,7 +45,7 @@ public class Click : MonoBehaviour
             }
             else
             {
-                load_game_text[i].text = save_load_Data.Instance.play_data.progress_slot[i].ToString() + " 번째 밤";
+                load_game_text[i].text = ((save_load_Data.Instance.play_data.progress_slot[i])/2 + 1).ToString() + "일차-" + char_list[save_load_Data.Instance.play_data.progress_slot[i]/2] + "의 이야기" + ((save_load_Data.Instance.play_data.progress_slot[i]%2 == 1) ? "(음료 마신 후)" : "");
             }
             
         }
