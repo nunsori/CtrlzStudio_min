@@ -74,6 +74,8 @@ public class save_load_Data : MonoBehaviour
 
     private void Awake()
     {
+        
+
         //데이터 파일 저장 경로 설정
         //data_file_name = "/" + data_file_name + "/" ;
         data_file_name = data_file_name + ".json";
@@ -99,6 +101,11 @@ public class save_load_Data : MonoBehaviour
         load();
 
 
+    }
+
+    private void Start()
+    {
+        //Screen.SetResolution(1920, 1080, true);
     }
 
 

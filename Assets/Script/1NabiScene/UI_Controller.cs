@@ -230,7 +230,7 @@ public class UI_Controller : MonoBehaviour
         //dialogManager.Makingbutton.SetActive(false);
         //make_drink_objs[DialogManager.current_scene_page].SetActive(true);
         sound_sr.Instance.Play_Effect("2", save_load_Data.Instance.play_data.Narr_Volume, false);
-        sound_sr.Instance.Play_BGM("2", save_load_Data.Instance.play_data.BGM_Volume, false);
+        sound_sr.Instance.Play_BGM("2", save_load_Data.Instance.play_data.BGM_Volume, true);
 
         //call_function_delay_ui(0.8f, new UI_Controller.temp_fuc_ui(envirnment_active));
         //call_function_delay_ui(1f, envirnment_active);

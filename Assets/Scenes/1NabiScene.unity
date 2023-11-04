@@ -4603,6 +4603,10 @@ PrefabInstance:
       value: Moonlight
       objectReference: {fileID: 0}
     - target: {fileID: 8370605848834287541, guid: a6a6e24e3257fbf4b82b6e8f51f39384, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8370605848834287541, guid: a6a6e24e3257fbf4b82b6e8f51f39384, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -7139,7 +7143,7 @@ Light:
   m_BounceIntensity: 2
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 2.1647616e+11, z: 6.8e-43, w: 1.89e-43}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -22654,6 +22658,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 948170522}
     m_Modifications:
+    - target: {fileID: 525845883045485876, guid: 9467f26124f106b40bdf360b351c1d56, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3420462273425579911, guid: 9467f26124f106b40bdf360b351c1d56, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -28694,15 +28702,15 @@ RectTransform:
   m_GameObject: {fileID: 992560414}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9999855, y: 0.9999855, z: 0.9999855}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 47439064}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.5, y: 0.5}
-  m_SizeDelta: {x: -1, y: -1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &992560416
 CanvasGroup:
@@ -30870,7 +30878,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -703, y: 75.9}
+  m_AnchoredPosition: {x: -703, y: 75.90039}
   m_SizeDelta: {x: 117, y: 139}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1058709466
@@ -34108,6 +34116,10 @@ PrefabInstance:
       value: Sunlight
       objectReference: {fileID: 0}
     - target: {fileID: 557369208046042987, guid: a4cd458af09655443839cde63bed5f7b, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 557369208046042987, guid: a4cd458af09655443839cde63bed5f7b, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
       value: 0.9284932
       objectReference: {fileID: 0}
@@ -36941,6 +36953,10 @@ PrefabInstance:
     - target: {fileID: 8190179072261642156, guid: a6a6e24e3257fbf4b82b6e8f51f39384, type: 3}
       propertyPath: m_Name
       value: Moonlight
+      objectReference: {fileID: 0}
+    - target: {fileID: 8370605848834287541, guid: a6a6e24e3257fbf4b82b6e8f51f39384, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8370605848834287541, guid: a6a6e24e3257fbf4b82b6e8f51f39384, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
@@ -41295,7 +41311,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1335575875
 Transform:
   m_ObjectHideFlags: 0
@@ -41605,7 +41621,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -551, y: 252.00998}
+  m_AnchoredPosition: {x: -551, y: 252.00977}
   m_SizeDelta: {x: 195, y: 89}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1351366286
@@ -43597,6 +43613,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 453577109}
     m_Modifications:
+    - target: {fileID: 525845883045485876, guid: 9467f26124f106b40bdf360b351c1d56, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3420462273425579911, guid: 9467f26124f106b40bdf360b351c1d56, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -44198,7 +44218,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1452551776
 Transform:
   m_ObjectHideFlags: 0
@@ -46549,6 +46569,10 @@ PrefabInstance:
     - target: {fileID: 8190179072261642156, guid: a6a6e24e3257fbf4b82b6e8f51f39384, type: 3}
       propertyPath: m_Name
       value: Moonlight
+      objectReference: {fileID: 0}
+    - target: {fileID: 8370605848834287541, guid: a6a6e24e3257fbf4b82b6e8f51f39384, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8370605848834287541, guid: a6a6e24e3257fbf4b82b6e8f51f39384, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
@@ -51140,15 +51164,15 @@ RectTransform:
   m_GameObject: {fileID: 1673954041}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9999855, y: 0.9999855, z: 0.9999855}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2145289948}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.5, y: 0.5}
-  m_SizeDelta: {x: -1, y: -1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &1673954043
 CanvasGroup:
@@ -53325,6 +53349,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 452667026}
     m_Modifications:
     - target: {fileID: 525845883045485876, guid: 9467f26124f106b40bdf360b351c1d56, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 525845883045485876, guid: 9467f26124f106b40bdf360b351c1d56, type: 3}
       propertyPath: ColorModule.gradient.maxGradient.key1.a
       value: 0.36078432
       objectReference: {fileID: 0}
@@ -54673,6 +54701,10 @@ PrefabInstance:
     - target: {fileID: 161898164893142898, guid: a4cd458af09655443839cde63bed5f7b, type: 3}
       propertyPath: m_Name
       value: Sunlight
+      objectReference: {fileID: 0}
+    - target: {fileID: 557369208046042987, guid: a4cd458af09655443839cde63bed5f7b, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 557369208046042987, guid: a4cd458af09655443839cde63bed5f7b, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
@@ -57514,7 +57546,7 @@ RectTransform:
   m_GameObject: {fileID: 1867091524}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9999855, y: 0.9999855, z: 0.9999855}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 129389548}
   m_Father: {fileID: 47439064}
@@ -58263,7 +58295,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -711, y: 78.8}
+  m_AnchoredPosition: {x: -711, y: 78.80078}
   m_SizeDelta: {x: 127, y: 127}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1917671072
@@ -58503,6 +58535,10 @@ PrefabInstance:
     - target: {fileID: 161898164893142898, guid: a4cd458af09655443839cde63bed5f7b, type: 3}
       propertyPath: m_Name
       value: Sunlight
+      objectReference: {fileID: 0}
+    - target: {fileID: 557369208046042987, guid: a4cd458af09655443839cde63bed5f7b, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 557369208046042987, guid: a4cd458af09655443839cde63bed5f7b, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
@@ -59755,10 +59791,10 @@ Canvas:
   m_GameObject: {fileID: 1955549845}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 527547324}
   m_PlaneDistance: 1
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0

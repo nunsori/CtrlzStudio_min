@@ -80,6 +80,7 @@ public class loading_scene_controller : MonoBehaviour
         {
             btn_animator_list[i] = btn_list[i].GetComponent<Animator>();
         }*/
+        Screen.SetResolution(1920, 1080, true);
     }
 
     // Update is called once per frame
